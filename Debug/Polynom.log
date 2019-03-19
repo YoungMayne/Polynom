@@ -1,0 +1,6 @@
+﻿  Polynom.cpp
+e:\projects\polynom\polynom.cpp(6): warning C4018: '<': signed/unsigned mismatch
+e:\projects\polynom\polynom.cpp(8): warning C4018: '<': signed/unsigned mismatch
+e:\projects\polynom\polynom.cpp(21): warning C4018: '<': signed/unsigned mismatch
+e:\projects\polynom\polynom.cpp(82): warning C4018: '<': signed/unsigned mismatch
+  Polynom.vcxproj -> E:\Projects\Polynom\Debug\Polynom.exe
