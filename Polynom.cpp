@@ -3,31 +3,26 @@
 uLab::Polynom::Polynom(const std::vector<uLab::Monom> &mons)
 {
 		monoms = mons;
+
 		for (int i = 0; i < monoms.size(); ++i)
 		{
-				for (int j = i + 1; j < monoms.size(); ++j)
+				for (int j = monoms.size() - 1; j != i; --j)
 				{
 						if (monoms[i].degree == monoms[j].degree)
 						{
 								monoms[i].coefficient += monoms[j].coefficient;
 								monoms.erase(monoms.begin() + j);
 						}
-				}
-				if (monoms[i].coefficient == 0)
-				{
-						monoms.erase(monoms.begin() + i);
-				}
-		}
-		for (int i = 0; i < monoms.size(); ++i)		
-		{
-				for (int j = monoms.size() - 1; j > i; --j)
-				{
-						if (monoms[i].degree < monoms[j].degree)
+						else if (monoms[i].degree < monoms[j].degree)
 						{
 								auto temp = monoms[i];
 								monoms[i] = monoms[j];
 								monoms[j] = temp;
 						}
+				}
+				if (monoms[i].coefficient == 0)
+				{
+						monoms.erase(monoms.begin() + i);
 				}
 		}
 }
@@ -40,13 +35,13 @@ uLab::Polynom uLab::Polynom::mult(const Polynom & other)
 {
 		std::vector<Monom> result;
 
-		for (const auto &tMonom : monoms)
+		for (const auto &t : monoms)
 		{
-				for (const auto &oMonom : other.monoms)
+				for (const auto &o : other.monoms)
 				{
 						Monom temp;
-						temp.coefficient = tMonom.coefficient * oMonom.coefficient;
-						temp.degree = tMonom.degree + oMonom.degree;
+						temp.coefficient = t.coefficient * o.coefficient;
+						temp.degree = t.degree + o.degree;
 						result.push_back(temp);
 				}
 		}
@@ -58,13 +53,13 @@ uLab::Polynom uLab::Polynom::div(const Polynom & other)
 {
 		std::vector<Monom> result;
 
-		for (const auto &tMonom : monoms)
+		for (const auto &t : monoms)
 		{
-				for (const auto &oMonom : other.monoms)
+				for (const auto &o : other.monoms)
 				{
 						Monom temp;
-						temp.coefficient = tMonom.coefficient / oMonom.coefficient;
-						temp.degree = tMonom.degree - oMonom.degree;
+						temp.coefficient = t.coefficient / o.coefficient;
+						temp.degree = t.degree - o.degree;
 						result.push_back(temp);
 				}
 		}
@@ -113,6 +108,7 @@ uLab::Polynom uLab::Polynom::integrate()
 float uLab::Polynom::calculate(float point)
 {
 		float result = 0;
+
 		for (const auto &m : monoms)
 		{
 				result += m.coefficient * pow(point, m.degree);
@@ -123,14 +119,14 @@ float uLab::Polynom::calculate(float point)
 
 std::ostream & uLab::operator<<(std::ostream & os, const Polynom & p)
 {
-		if (p.monoms.empty()) 
+		if (p.monoms.empty())
 		{
 				os << 0;
 				return os;
 		}
 		for (const auto &m : p.monoms)
 		{
-				m.coefficient < 0 ? os << m.coefficient : os << '+' << m.coefficient;
+				m.coefficient < 0 ? os << m.coefficient : m.coefficient == 1 ? os << '+' : os << '+' << m.coefficient;
 				m.degree == 0 ? os : m.degree == 1 ? os << 'x' : os << "x^" << m.degree;
 		}
 
