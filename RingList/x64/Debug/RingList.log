@@ -1,0 +1,16 @@
+﻿  main.cpp
+e:\polynom\ringlist\rlist.cpp(32): warning C4101: 'e': unreferenced local variable
+  e:\polynom\ringlist\rlist.cpp(15): note: while compiling class template member function 'void rlist<int>::push(Type)'
+          with
+          [
+              Type=int
+          ]
+  e:\polynom\ringlist\main.cpp(6): note: see reference to function template instantiation 'void rlist<int>::push(Type)' being compiled
+          with
+          [
+              Type=int
+          ]
+  e:\polynom\ringlist\main.cpp(5): note: see reference to class template instantiation 'rlist<int>' being compiled
+  rlist.cpp
+  Generating Code...
+  RingList.vcxproj -> E:\Polynom\Polynom\x64\Debug\RingList.exe
