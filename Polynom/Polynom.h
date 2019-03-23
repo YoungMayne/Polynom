@@ -25,6 +25,7 @@ public:
 		Polynom integrate();
 
 		float calculate(float point);
+		float degree();
 
 		Polynom& operator=(const Polynom &pol);
 		friend std::ostream & operator<<(std::ostream & os, const Polynom & p);	
@@ -33,4 +34,4 @@ private:
 		m_vector monoms;
 };
 
-#endif _POLYNOM_H
+#endif 

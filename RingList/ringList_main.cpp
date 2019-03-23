@@ -1,11 +1,33 @@
+#include <ctime>
+
 #include "rlist.cpp"
 #include "../Polynom/Polynom.cpp"
 
+
+Polynom get_polynom_randomly(int size) {	
+		std::vector<Monom> mons;
+
+		for (int i = 0; i < size; ++i) {
+				Monom temp;
+				temp.coefficient = rand() % 20 - 10;
+				temp.degree = rand() % 11;
+				mons.push_back(temp);
+		}
+
+		return Polynom(mons);
+}
+
 int main() {
+		srand(time(0));
 		rlist<Polynom> list;
-		Polynom p({ { 2, 2 } ,{ 3, 1 } ,{ -4, 2 } });
-		list.push(p);
-		std::cout << list.pop() << std::endl;
+
+		for(int i = 0; i < 100; ++i) {
+				int size = rand() % 101;
+				list.push(get_polynom_randomly(size));
+		}
+		while (!list.empty()) {
+				std::cout << list.pop() << std::endl;
+		}
 
 		system("pause");
 		return 0;

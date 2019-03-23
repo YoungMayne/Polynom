@@ -7,6 +7,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Polynom", "Polynom.vcxproj"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "RingList", "..\RingList\RingList.vcxproj", "{78E40B29-6D54-418B-85B0-DD47DA0893E0}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "LinearListOnAnArray", "..\LinearListOnAnArray\LinearListOnAnArray.vcxproj", "{3120C45C-7EA2-45DC-8A93-52D4DBB3B31F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -31,6 +33,14 @@ Global
 		{78E40B29-6D54-418B-85B0-DD47DA0893E0}.Release|x64.Build.0 = Release|x64
 		{78E40B29-6D54-418B-85B0-DD47DA0893E0}.Release|x86.ActiveCfg = Release|Win32
 		{78E40B29-6D54-418B-85B0-DD47DA0893E0}.Release|x86.Build.0 = Release|Win32
+		{3120C45C-7EA2-45DC-8A93-52D4DBB3B31F}.Debug|x64.ActiveCfg = Debug|x64
+		{3120C45C-7EA2-45DC-8A93-52D4DBB3B31F}.Debug|x64.Build.0 = Debug|x64
+		{3120C45C-7EA2-45DC-8A93-52D4DBB3B31F}.Debug|x86.ActiveCfg = Debug|Win32
+		{3120C45C-7EA2-45DC-8A93-52D4DBB3B31F}.Debug|x86.Build.0 = Debug|Win32
+		{3120C45C-7EA2-45DC-8A93-52D4DBB3B31F}.Release|x64.ActiveCfg = Release|x64
+		{3120C45C-7EA2-45DC-8A93-52D4DBB3B31F}.Release|x64.Build.0 = Release|x64
+		{3120C45C-7EA2-45DC-8A93-52D4DBB3B31F}.Release|x86.ActiveCfg = Release|Win32
+		{3120C45C-7EA2-45DC-8A93-52D4DBB3B31F}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

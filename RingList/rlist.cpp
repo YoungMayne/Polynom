@@ -20,9 +20,14 @@ rlist<Type>::~rlist() {
 template<typename Type>
 void rlist<Type>::push(const Type &data) {
 		if (lst == nullptr) {
-				lst = new Node;
-				lst->data = data;
-				lst->next = lst;
+				try {
+						lst = new Node;
+						lst->data = data;
+						lst->next = lst;
+				}
+				catch (std::exception &e) {
+						throw "No available memory";
+				}
 		}
 		else {
 				try {
@@ -35,6 +40,15 @@ void rlist<Type>::push(const Type &data) {
 				catch (std::exception &e) {
 						throw "No available memory";
 				}
+		}
+}
+
+template<typename Type>
+void rlist<Type>::clear(){
+		while (lst != nullptr) {
+				Node *temp = lst;
+				lst = lst->next;
+				delete temp;
 		}
 }
 
@@ -57,4 +71,21 @@ Type rlist<Type>::pop() {
 		}
 
 		return result;
+}
+
+template<typename Type>
+bool rlist<Type>::full(){
+		try {
+				Node *temp = new Node;
+		}
+		catch (std::exception &e) {
+				return true;
+		}
+
+		return false;
+}
+
+template<typename Type>
+bool rlist<Type>::empty(){
+		return lst == nullptr;
 }

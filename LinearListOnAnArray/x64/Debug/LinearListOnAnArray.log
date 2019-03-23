@@ -1,0 +1,36 @@
+﻿  LinearList_main.cpp
+e:\polynom\polynom\polynom.cpp(9): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+e:\polynom\linearlistonanarray\linearlist_main.cpp(13): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+e:\polynom\linearlistonanarray\linearlist_main.cpp(14): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+e:\polynom\linearlistonanarray\linearlist_main.cpp(22): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+e:\polynom\linearlistonanarray\linearlist_main.cpp(36): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+e:\polynom\linearlistonanarray\lloaa.cpp(113): warning C4101: 'e': unreferenced local variable
+  e:\polynom\linearlistonanarray\lloaa.cpp(107): note: while compiling class template member function 'Nexus<KEY,DATA> *LLOAA<KEY,DATA>::get_new_nexus(int)'
+          with
+          [
+              KEY=float,
+              DATA=Polynom
+          ]
+  e:\polynom\linearlistonanarray\lloaa.cpp(23): note: see reference to function template instantiation 'Nexus<KEY,DATA> *LLOAA<KEY,DATA>::get_new_nexus(int)' being compiled
+          with
+          [
+              KEY=float,
+              DATA=Polynom
+          ]
+  e:\polynom\linearlistonanarray\lloaa.cpp(11): note: while compiling class template member function 'LLOAA<float,Polynom>::~LLOAA(void)'
+  e:\polynom\linearlistonanarray\linearlist_main.cpp(23): note: see reference to function template instantiation 'LLOAA<float,Polynom>::~LLOAA(void)' being compiled
+  e:\polynom\linearlistonanarray\linearlist_main.cpp(23): note: see reference to class template instantiation 'LLOAA<float,Polynom>' being compiled
+e:\polynom\linearlistonanarray\lloaa.cpp(99): warning C4101: 'e': unreferenced local variable
+  e:\polynom\linearlistonanarray\lloaa.cpp(93): note: while compiling class template member function 'Nexus<KEY,DATA> *LLOAA<KEY,DATA>::get_new_nexus(void)'
+          with
+          [
+              KEY=float,
+              DATA=Polynom
+          ]
+  e:\polynom\linearlistonanarray\lloaa.cpp(18): note: see reference to function template instantiation 'Nexus<KEY,DATA> *LLOAA<KEY,DATA>::get_new_nexus(void)' being compiled
+          with
+          [
+              KEY=float,
+              DATA=Polynom
+          ]
+  LinearListOnAnArray.vcxproj -> E:\Polynom\Polynom\x64\Debug\LinearListOnAnArray.exe

@@ -13,8 +13,12 @@ public:
 		~rlist();
 
 		void push(const Type &data);
+		void clear();
 
 		Type pop();
+
+		bool full();//lul
+		bool empty();
 
 private:
 		struct Node {
@@ -25,4 +29,4 @@ private:
 		Node * lst;
 };
 
-#endif _RLIST_H
+#endif

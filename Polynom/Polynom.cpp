@@ -101,6 +101,13 @@ float Polynom::calculate(float point) {
 		return result;
 }
 
+float Polynom::degree(){
+		if (monoms.empty() == true) {
+				return 0;
+		}
+		return monoms[0].degree;
+}
+
 Polynom& Polynom::operator=(const Polynom & pol) {
 		monoms = pol.monoms;
 
@@ -108,7 +115,7 @@ Polynom& Polynom::operator=(const Polynom & pol) {
 }
 
 std::ostream & operator<<(std::ostream & os, const Polynom & p) {
-		if (p.monoms.empty()) {
+		if (p.monoms.empty() == true) {
 				os << 0;
 				return os;
 		}
