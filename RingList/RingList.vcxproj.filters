@@ -15,10 +15,10 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp">
+    <ClCompile Include="rlist.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="rlist.cpp">
+    <ClCompile Include="ringList_main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

@@ -1,44 +1,40 @@
 #include "Polynom.h"
 
-Polynom::Polynom(const m_vector &mons)
-{
+Polynom::Polynom() {}
+
+Polynom::Polynom(const m_vector &mons) {
 		monoms = mons;
 
-		for (int i = 0; i < monoms.size(); ++i)
-		{
-				for (int j = monoms.size() - 1; j != i; --j)
-				{
-						if (monoms[i].degree == monoms[j].degree)
-						{
+		for (int i = 0; i < monoms.size(); ++i) {
+				for (int j = monoms.size() - 1; j != i; --j) {
+						if (monoms[i].degree == monoms[j].degree) {
 								monoms[i].coefficient += monoms[j].coefficient;
 								monoms.erase(monoms.begin() + j);
 						}
-						else if (monoms[i].degree < monoms[j].degree)
-						{
+						else if (monoms[i].degree < monoms[j].degree) {
 								auto temp = monoms[i];
 								monoms[i] = monoms[j];
 								monoms[j] = temp;
 						}
 				}
-				if (monoms[i].coefficient == 0)
-				{
+				if (monoms[i].coefficient == 0) {
 						monoms.erase(monoms.begin() + i);
 				}
 		}
 }
 
-Polynom::~Polynom()
+Polynom::Polynom(const Polynom & pol)
 {
+		this->monoms = pol.monoms;
 }
 
-Polynom Polynom::mult(const Polynom & other)
-{
+Polynom::~Polynom() {}
+
+Polynom Polynom::mult(const Polynom & other) {
 		m_vector result;
 
-		for (const auto &t : monoms)
-		{
-				for (const auto &o : other.monoms)
-				{
+		for (const auto &t : monoms) {
+				for (const auto &o : other.monoms) {
 						Monom temp;
 						temp.coefficient = t.coefficient * o.coefficient;
 						temp.degree = t.degree + o.degree;
@@ -49,14 +45,11 @@ Polynom Polynom::mult(const Polynom & other)
 		return Polynom(result);
 }
 
-Polynom Polynom::div(const Polynom & other)
-{
+Polynom Polynom::div(const Polynom & other) {
 		m_vector result;
 
-		for (const auto &t : monoms)
-		{
-				for (const auto &o : other.monoms)
-				{
+		for (const auto &t : monoms) {
+				for (const auto &o : other.monoms) {
 						Monom temp;
 						temp.coefficient = t.coefficient / o.coefficient;
 						temp.degree = t.degree - o.degree;
@@ -67,21 +60,16 @@ Polynom Polynom::div(const Polynom & other)
 		return Polynom(result);
 }
 
-Polynom Polynom::derivative(int quantity)
-{
+Polynom Polynom::derivative(int quantity) {
 		auto result = monoms;
 		int count = 0;
 
-		while (count < quantity)
-		{
-				for (int i = 0; i < result.size(); ++i)
-				{
-						if (result[i].degree == 0)
-						{
+		while (count < quantity) {
+				for (int i = 0; i < result.size(); ++i) {
+						if (result[i].degree == 0) {
 								result.erase(result.begin() + i);
 						}
-						else
-						{
+						else {
 								result[i].coefficient *= result[i].degree;
 								result[i].degree -= 1;
 						}
@@ -92,12 +80,10 @@ Polynom Polynom::derivative(int quantity)
 		return Polynom(result);
 }
 
-Polynom Polynom::integrate()
-{
+Polynom Polynom::integrate() {
 		auto result = monoms;
 
-		for (auto &m : result)
-		{
+		for (auto &m : result) {
 				m.degree += 1;
 				m.coefficient /= m.degree;
 		}
@@ -105,34 +91,28 @@ Polynom Polynom::integrate()
 		return Polynom(result);
 }
 
-float Polynom::calculate(float point)
-{
+float Polynom::calculate(float point) {
 		float result = 0;
 
-		for (const auto &m : monoms)
-		{
+		for (const auto &m : monoms) {
 				result += m.coefficient * pow(point, m.degree);
 		}
 
 		return result;
 }
 
-Polynom Polynom::operator=(const Polynom & pol)
-{
-		m_vector result = pol.monoms;
+Polynom& Polynom::operator=(const Polynom & pol) {
+		monoms = pol.monoms;
 
-		return Polynom(result);
+		return *this;
 }
 
-std::ostream & operator<<(std::ostream & os, const Polynom & p)
-{
-		if (p.monoms.empty())
-		{
+std::ostream & operator<<(std::ostream & os, const Polynom & p) {
+		if (p.monoms.empty()) {
 				os << 0;
 				return os;
 		}
-		for (const auto &m : p.monoms)
-		{
+		for (const auto &m : p.monoms) {
 				m.coefficient < 0 ? os << m.coefficient : m.coefficient == 1 ? os << '+' : os << '+' << m.coefficient;
 				m.degree == 0 ? os : m.degree == 1 ? os << 'x' : os << "x^" << m.degree;
 		}

@@ -15,10 +15,10 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp">
+    <ClCompile Include="Polynom.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Polynom.cpp">
+    <ClCompile Include="polynom_main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

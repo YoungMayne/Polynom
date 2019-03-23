@@ -115,7 +115,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp" />
+    <ClCompile Include="polynom_main.cpp" />
     <ClCompile Include="Polynom.cpp" />
   </ItemGroup>
   <ItemGroup>
