@@ -1,7 +1,7 @@
 #include <iostream>
 #include <ctime>
 
-#include "LLOAA.cpp"
+#include "LLOAA.h"
 #include "../Polynom/Polynom.cpp"
 
 
@@ -20,7 +20,7 @@ Polynom get_polynom_randomly(int size) {
 
 int main() {
 			srand(time(0));
-			LLOAA<float, Polynom> l_table;
+			LLOAA<float, Polynom> l_table({3, get_polynom_randomly(4)});
 			Nexus<float, Polynom> result;
 
 			for (int i = 0; i < 100; ++i) {

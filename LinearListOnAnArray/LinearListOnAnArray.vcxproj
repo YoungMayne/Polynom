@@ -116,7 +116,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="LinearList_main.cpp" />
-    <ClCompile Include="LLOAA.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="LLOAA.h" />

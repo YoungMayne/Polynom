@@ -119,7 +119,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="ringList_main.cpp" />
-    <ClCompile Include="rlist.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="rlist.h" />

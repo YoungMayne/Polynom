@@ -1,6 +1,6 @@
 #include <ctime>
 
-#include "rlist.cpp"
+#include "rlist.h"
 #include "../Polynom/Polynom.cpp"
 
 
@@ -26,8 +26,12 @@ int main() {
 				list.push(get_polynom_randomly(size));
 		}
 		while (!list.empty()) {
-				std::cout << list.pop() << std::endl;
+				std::cout << list.get() << std::endl;
+				list.pop();
 		}
+
+		list.clear();
+		std::cout << "cleared!" << std::endl;
 
 		system("pause");
 		return 0;
