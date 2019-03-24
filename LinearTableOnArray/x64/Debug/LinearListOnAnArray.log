@@ -1,0 +1,34 @@
+﻿C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\VC\VCTargets\Microsoft.CppBuild.targets(391,5): warning MSB8028: The intermediate directory (x64\Debug\) contains files shared from another project (LinearListOnAnArray.vcxproj).  This can lead to incorrect clean and rebuild behavior.
+  LinearList_main.cpp
+e:\polynom\polynom\polynom.cpp(9): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+e:\polynom\linearlistonanarray\linearlist_main.cpp(13): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+e:\polynom\linearlistonanarray\linearlist_main.cpp(14): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+e:\polynom\linearlistonanarray\linearlist_main.cpp(22): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+e:\polynom\linearlistonanarray\linearlist_main.cpp(36): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+e:\polynom\linearlistonanarray\t_vector.h(138): warning C4101: 'e': unreferenced local variable
+  e:\polynom\linearlistonanarray\t_vector.h(132): note: while compiling class template member function 'Nexus<KEY,DATA> *t_vector<KEY,DATA>::get_new_nexus(int)'
+          with
+          [
+              KEY=float,
+              DATA=Polynom
+          ]
+  e:\polynom\linearlistonanarray\t_vector.h(41): note: see reference to function template instantiation 'Nexus<KEY,DATA> *t_vector<KEY,DATA>::get_new_nexus(int)' being compiled
+          with
+          [
+              KEY=float,
+              DATA=Polynom
+          ]
+  e:\polynom\linearlistonanarray\t_vector.h(40): note: while compiling class template member function 't_vector<float,Polynom>::t_vector(const Nexus<KEY,DATA> &)'
+          with
+          [
+              KEY=float,
+              DATA=Polynom
+          ]
+  e:\polynom\linearlistonanarray\linearlist_main.cpp(23): note: see reference to function template instantiation 't_vector<float,Polynom>::t_vector(const Nexus<KEY,DATA> &)' being compiled
+          with
+          [
+              KEY=float,
+              DATA=Polynom
+          ]
+  e:\polynom\linearlistonanarray\linearlist_main.cpp(23): note: see reference to class template instantiation 't_vector<float,Polynom>' being compiled
+  LinearListOnAnArray.vcxproj -> E:\Polynom\Polynom\x64\Debug\LinearTableOnArray.exe

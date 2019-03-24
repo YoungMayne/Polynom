@@ -1,0 +1,34 @@
+﻿  LinearArray_main.cpp
+e:\polynom\polynom\polynom.cpp(8): warning C4018: '<': signed/unsigned mismatch
+e:\polynom\polynom\polynom.cpp(68): warning C4018: '<': signed/unsigned mismatch
+e:\polynom\lineartableonarray\lineararray_main.cpp(13): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+e:\polynom\lineartableonarray\lineararray_main.cpp(14): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+e:\polynom\lineartableonarray\lineararray_main.cpp(22): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+e:\polynom\lineartableonarray\lineararray_main.cpp(36): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+e:\polynom\lineartableonarray\t_vector.h(135): warning C4101: 'e': unreferenced local variable
+  e:\polynom\lineartableonarray\t_vector.h(129): note: while compiling class template member function 'Nexus<KEY,DATA> *t_vector<KEY,DATA>::get_new_nexus(int)'
+          with
+          [
+              KEY=float,
+              DATA=Polynom
+          ]
+  e:\polynom\lineartableonarray\t_vector.h(52): note: see reference to function template instantiation 'Nexus<KEY,DATA> *t_vector<KEY,DATA>::get_new_nexus(int)' being compiled
+          with
+          [
+              KEY=float,
+              DATA=Polynom
+          ]
+  e:\polynom\lineartableonarray\t_vector.h(39): note: while compiling class template member function 't_vector<float,Polynom>::t_vector(const Nexus<KEY,DATA> &)'
+          with
+          [
+              KEY=float,
+              DATA=Polynom
+          ]
+  e:\polynom\lineartableonarray\lineararray_main.cpp(23): note: see reference to function template instantiation 't_vector<float,Polynom>::t_vector(const Nexus<KEY,DATA> &)' being compiled
+          with
+          [
+              KEY=float,
+              DATA=Polynom
+          ]
+  e:\polynom\lineartableonarray\lineararray_main.cpp(23): note: see reference to class template instantiation 't_vector<float,Polynom>' being compiled
+  LinearListOnAnArray.vcxproj -> E:\Polynom\Debug\LinearTableOnArray.exe

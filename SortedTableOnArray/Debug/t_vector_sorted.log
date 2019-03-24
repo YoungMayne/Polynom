@@ -1,0 +1,18 @@
+﻿  SortedTable_main.cpp
+e:\polynom\sortedtableonarray\t_vector_sorted.h(142): warning C4101: 'e': unreferenced local variable
+  e:\polynom\sortedtableonarray\t_vector_sorted.h(136): note: while compiling class template member function 'Nexus<KEY,DATA> *t_vector_sorted<KEY,DATA>::get_new_nexus(int)'
+          with
+          [
+              KEY=int,
+              DATA=float
+          ]
+  e:\polynom\sortedtableonarray\t_vector_sorted.h(64): note: see reference to function template instantiation 'Nexus<KEY,DATA> *t_vector_sorted<KEY,DATA>::get_new_nexus(int)' being compiled
+          with
+          [
+              KEY=int,
+              DATA=float
+          ]
+  e:\polynom\sortedtableonarray\t_vector_sorted.h(44): note: while compiling class template member function 't_vector_sorted<int,float>::~t_vector_sorted(void)'
+  e:\polynom\sortedtableonarray\sortedtable_main.cpp(6): note: see reference to function template instantiation 't_vector_sorted<int,float>::~t_vector_sorted(void)' being compiled
+  e:\polynom\sortedtableonarray\sortedtable_main.cpp(6): note: see reference to class template instantiation 't_vector_sorted<int,float>' being compiled
+  t_vector_sorted.vcxproj -> E:\Polynom\Debug\SortedTableOnArray.exe
