@@ -1,5 +1,2 @@
 ﻿  polynom_main.cpp
-  Polynom.cpp
-e:\polynom\polynom\polynom.cpp(9): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-  Generating Code...
   Polynom.vcxproj -> E:\Polynom\Polynom\x64\Debug\Polynom.exe

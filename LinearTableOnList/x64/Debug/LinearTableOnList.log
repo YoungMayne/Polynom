@@ -1,0 +1,29 @@
+﻿  LinearList_main.cpp
+e:\polynom\polynom\polynom.cpp(9): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+e:\polynom\lineartableonlist\t_list.h(154): warning C4101: 'e': unreferenced local variable
+  e:\polynom\lineartableonlist\t_list.h(150): note: while compiling class template member function 'void t_list<int,Polynom>::push_to(t_list<int,Polynom>::p_nexus *&,const Nexus<KEY,DATA> &)'
+          with
+          [
+              KEY=int,
+              DATA=Polynom
+          ]
+  e:\polynom\lineartableonlist\t_list.h(44): note: see reference to function template instantiation 'void t_list<int,Polynom>::push_to(t_list<int,Polynom>::p_nexus *&,const Nexus<KEY,DATA> &)' being compiled
+          with
+          [
+              KEY=int,
+              DATA=Polynom
+          ]
+  e:\polynom\lineartableonlist\t_list.h(43): note: while compiling class template member function 't_list<int,Polynom>::t_list(const Nexus<KEY,DATA> &)'
+          with
+          [
+              KEY=int,
+              DATA=Polynom
+          ]
+  e:\polynom\lineartableonlist\linearlist_main.cpp(6): note: see reference to function template instantiation 't_list<int,Polynom>::t_list(const Nexus<KEY,DATA> &)' being compiled
+          with
+          [
+              KEY=int,
+              DATA=Polynom
+          ]
+  e:\polynom\lineartableonlist\linearlist_main.cpp(6): note: see reference to class template instantiation 't_list<int,Polynom>' being compiled
+  LinearTableOnList.vcxproj -> E:\Polynom\Polynom\x64\Debug\LinearTableOnList.exe

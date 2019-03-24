@@ -23,6 +23,7 @@
     <ProjectGuid>{3120C45C-7EA2-45DC-8A93-52D4DBB3B31F}</ProjectGuid>
     <RootNamespace>LinearListOnAnArray</RootNamespace>
     <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
+    <ProjectName>LinearTableOnArray</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -115,10 +116,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="LinearList_main.cpp" />
+    <ClCompile Include="LinearArray_main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="LLOAA.h" />
+    <ClInclude Include="t_vector.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
