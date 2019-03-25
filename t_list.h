@@ -108,6 +108,7 @@ inline void t_list<KEY, DATA>::clear() {
 				first = first->next;
 				delete temp;
 		}
+		first = nullptr;
 }
 
 template<typename KEY, typename DATA>

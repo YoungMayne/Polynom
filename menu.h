@@ -22,19 +22,17 @@ public:
 		void clear();
 
 		std::string join();
+		int join(int);
 
 private:
 		std::vector<std::string> vItems;
 		int active = 0;
-
-		HANDLE handle;
 
 		void draw();
 		void hide_cursor(bool status);
 };
 
 inline menu::menu() {
-		handle = GetStdHandle(STD_OUTPUT_HANDLE);
 }
 
 inline menu::menu(const std::vector<std::string> items) : menu() {
@@ -85,6 +83,39 @@ inline std::string menu::join() {
 		}
 }
 
+inline int menu::join(int){
+		hide_cursor(true);
+		draw();
+
+		while (true) {
+				if (_kbhit()) {
+						switch (_getch()) {
+						case KEY_UP:
+								active -= 1;
+								if (active < 0) {
+										active = vItems.size() - 1;
+								}
+								draw();
+								break;
+						case KEY_DOWN:
+								active += 1;
+								if (active > vItems.size() - 1) {
+										active = 0;
+								}
+								system("cls");
+								draw();
+								break;
+						case	ENTER:
+								hide_cursor(false);
+								return active;
+						case ESC:
+								hide_cursor(false);
+								return -1;
+						}
+				}
+		}
+}
+
 inline void menu::draw() {
 		system("cls");
 		for (int i = 0; i < vItems.size(); ++i) {
@@ -98,6 +129,7 @@ inline void menu::draw() {
 }
 
 inline void menu::hide_cursor(bool status){
+		HANDLE handle = GetStdHandle(STD_OUTPUT_HANDLE);
 		CONSOLE_CURSOR_INFO structCursorInfo;
 		GetConsoleCursorInfo(handle, &structCursorInfo);
 		structCursorInfo.bVisible = !status;

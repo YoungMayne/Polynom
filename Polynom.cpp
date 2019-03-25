@@ -121,7 +121,7 @@ std::ostream & operator<<(std::ostream & os, const Polynom & p) {
 		}
 
 		for (const auto &m : p.monoms) {
-				m.coefficient < 0 ? os << m.coefficient : m.coefficient == 1 ? os << '+' : os << '+' << m.coefficient;
+				m.coefficient < 0 ? os << m.coefficient : m.coefficient == 1 ? m.degree == 0 ? os << '+' <<  1 : os << '+' : os << '+' << m.coefficient;
 				m.degree == 0 ? os : m.degree == 1 ? os << 'x' : os << "x^" << m.degree;
 		}
 

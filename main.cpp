@@ -2,6 +2,7 @@
 #include "menu.h"
 #include "rlist.h"
 #include "t_list.h"
+#include "rbtree.h"
 #include "t_vector.h"
 #include "t_vector_sorted.h"
 
@@ -9,7 +10,7 @@ Polynom getPolynomFromConsole() {
 		std::vector<Monom> mons;
 		std::string pString;
 
-		std::cout << "\nEnter polynom\nExample: {a, b} {c, d} {e, f}\n\n";
+		std::cout << "\nEnter polynom\nExample: {a, b} {c, d} {e, f}\n\n\t";
 		std::getline(std::cin, pString);
 
 		float coef = 1;
@@ -54,7 +55,12 @@ void Polynom_menu() {
 		Polynom p2;
 
 		auto create_polynom_menu = []() {
-				menu m({"Show existing polynoms", "Add polynoms for work", "Mult existing polynoms", "Divide existing polynoms","Derivide first polynom", "Integrate first polynom"});
+				menu m({"Show", "Add", "Mult", "Divide", "Derivide", "Integrate", "Calculate"});
+				return m.join();
+		};
+
+		auto create_add_polynom_menu = []() {
+				menu m({ "First", "Second", "Both" });
 				return m.join();
 		};
 
@@ -63,32 +69,55 @@ void Polynom_menu() {
 
 				system("cls");
 				std::cout << '\t' << exitCode << std::endl;
-				if (exitCode == "Show existing polynoms") {
-						std::cout << p1 << std::endl;
-						std::cout << p2 << std::endl;
-				}
-				else if (exitCode == "Add polynoms for work") {
-						p1 = getPolynomFromConsole();
-						p2 = getPolynomFromConsole();
+				if (exitCode == "Add") {
+						auto simpleMenuExitCode = create_add_polynom_menu();
 
-						std::cout << "Polynoms are added" << std::endl;
+						system("cls");
+						std::cout << '\t' << exitCode << std::endl;
+						std::cout << '\t' << simpleMenuExitCode << std::endl;
+						if (simpleMenuExitCode == "First") {
+								p1 = getPolynomFromConsole();
+						}
+						else if (simpleMenuExitCode == "Second") {
+								p2 = getPolynomFromConsole();
+						}
+						else if (simpleMenuExitCode == "Both") {
+								p1 = getPolynomFromConsole();
+								p2 = getPolynomFromConsole();
+						}
+						if (simpleMenuExitCode != "NULL") {
+								std::cout << "Polynom(s) are added" << std::endl;
+								_getch();
+						}
 				}
-				else if (exitCode == "Mult existing polynoms") {
-						std::cout << p1.mult(p2) << std::endl;
+				else {
+						if (exitCode == "Show") {
+								std::cout << p1 << std::endl;
+								std::cout << p2 << std::endl;
+						}
+						else if (exitCode == "Mult") {
+								std::cout << p1.mult(p2) << std::endl;
+						}
+						else if (exitCode == "Divide") {
+								std::cout << p1.div(p2) << std::endl;
+						}
+						else if (exitCode == "Derivide") {
+								std::cout << p1.derivative() << std::endl;
+						}
+						else if (exitCode == "Integrate") {
+								std::cout << p1.integrate() << std::endl;
+						}
+						else if (exitCode == "Calculate") {
+								float point;
+								std::cout << "Enter the point: ";
+								std::cin >> point;
+								std::cout << p1.calculate(point) << std::endl;
+						}
+						else if (exitCode == "NULL") {
+								return;
+						}
+						_getch();
 				}
-				else if (exitCode == "Divide existing polynoms") {
-						std::cout << p1.div(p2) << std::endl;
-				}
-				else if (exitCode == "Derivide first polynom") {
-						std::cout << p1.derivative() << std::endl;
-				}
-				else if (exitCode == "Integrate first polynom") {
-						std::cout << p1.integrate() << std::endl;
-				}
-				else if (exitCode == "NULL") {
-						return;
-				}
-				_getch();
 		}
 }
 
@@ -356,7 +385,15 @@ void createMenu() {
 }
 
 int main() {
-		createMenu();
-
+		//createMenu();
+		rbtree<std::string, int> t;
+		t.add({ "DOG", 1 });
+		t.add({ "-", 4 });
+		Nexus<std::string, int> result;
+		if (t.get("DOG", result) == true) {
+				std::cout << result.data << std::endl;
+		}
+		
+		system("pause");
 		return 0;
 }

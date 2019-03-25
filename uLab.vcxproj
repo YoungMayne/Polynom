@@ -117,6 +117,7 @@
   <ItemGroup>
     <ClInclude Include="menu.h" />
     <ClInclude Include="Polynom.h" />
+    <ClInclude Include="rbtree.h" />
     <ClInclude Include="rlist.h" />
     <ClInclude Include="t_list.h" />
     <ClInclude Include="t_vector.h" />
