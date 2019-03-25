@@ -1,80 +1,59 @@
-﻿  main.cpp
-e:\polynom\menu.h(63): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
-e:\polynom\menu.h(96): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
-e:\polynom\main.cpp(25): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-e:\polynom\main.cpp(29): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-e:\polynom\rlist.h(58): warning C4101: 'e': unreferenced local variable
-  e:\polynom\rlist.h(52): note: while compiling class template member function 'void rlist<Polynom>::push(const Type &)'
+﻿  Polynom.cpp
+c:\users\павел\desktop\polynom3\polynom\polynom.cpp(9): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
+  main.cpp
+c:\users\павел\desktop\polynom3\polynom\menu.h(63): warning C4267: =: преобразование из "size_t" в "int"; возможна потеря данных
+c:\users\павел\desktop\polynom3\polynom\menu.h(96): warning C4267: =: преобразование из "size_t" в "int"; возможна потеря данных
+c:\users\павел\desktop\polynom3\polynom\main.cpp(26): warning C4244: =: преобразование "double" в "float", возможна потеря данных
+c:\users\павел\desktop\polynom3\polynom\main.cpp(30): warning C4244: =: преобразование "double" в "float", возможна потеря данных
+c:\users\павел\desktop\polynom3\polynom\rlist.h(58): warning C4101: e: неиспользованная локальная переменная
+  c:\users\павел\desktop\polynom3\polynom\rlist.h(52): note: при компиляции функции-члена "<Нет данных>" класса класс <Нет данных>
+  c:\users\павел\desktop\polynom3\polynom\main.cpp(135): note: выполняется компиляция ссылки на экземпляр шаблон функции "void rlist<Polynom>::push(const Type &)"
           with
           [
               Type=Polynom
           ]
-  e:\polynom\main.cpp(134): note: see reference to function template instantiation 'void rlist<Polynom>::push(const Type &)' being compiled
-          with
-          [
-              Type=Polynom
-          ]
-  e:\polynom\main.cpp(125): note: see reference to class template instantiation 'rlist<Polynom>' being compiled
-e:\polynom\rbtree.h(56): warning C4101: 'e': unreferenced local variable
-  e:\polynom\rbtree.h(40): note: while compiling class template member function 'bool rbtree<std::string,int>::add(const Nexus<KEY,DATA> &)'
+  c:\users\павел\desktop\polynom3\polynom\main.cpp(126): note: выполняется компиляция ссылки на экземпляр шаблон класс "rlist<Polynom>"
+c:\users\павел\desktop\polynom3\polynom\rbtree.h(56): warning C4101: e: неиспользованная локальная переменная
+  c:\users\павел\desktop\polynom3\polynom\rbtree.h(40): note: при компиляции функции-члена "<Нет данных>" класса класс <Нет данных>
+  c:\users\павел\desktop\polynom3\polynom\main.cpp(391): note: выполняется компиляция ссылки на экземпляр шаблон функции "bool rbtree<std::string,int>::add(const Nexus<KEY,DATA> &)"
           with
           [
               KEY=std::string,
               DATA=int
           ]
-  e:\polynom\main.cpp(390): note: see reference to function template instantiation 'bool rbtree<std::string,int>::add(const Nexus<KEY,DATA> &)' being compiled
-          with
-          [
-              KEY=std::string,
-              DATA=int
-          ]
-  e:\polynom\main.cpp(389): note: see reference to class template instantiation 'rbtree<std::string,int>' being compiled
-e:\polynom\t_vector.h(131): warning C4101: 'e': unreferenced local variable
-  e:\polynom\t_vector.h(125): note: while compiling class template member function 'Nexus<KEY,DATA> *t_vector<KEY,DATA>::get_new_nexus(int)'
+  c:\users\павел\desktop\polynom3\polynom\main.cpp(390): note: выполняется компиляция ссылки на экземпляр шаблон класс "rbtree<std::string,int>"
+c:\users\павел\desktop\polynom3\polynom\t_vector.h(131): warning C4101: e: неиспользованная локальная переменная
+  c:\users\павел\desktop\polynom3\polynom\t_vector.h(125): note: при компиляции функции-члена "<Нет данных>" класса класс <Нет данных>
+  c:\users\павел\desktop\polynom3\polynom\t_vector.h(46): note: выполняется компиляция ссылки на экземпляр шаблон функции "Nexus<KEY,DATA> *t_vector<KEY,DATA>::get_new_nexus(int)"
           with
           [
               KEY=std::string,
               DATA=Polynom
           ]
-  e:\polynom\t_vector.h(46): note: see reference to function template instantiation 'Nexus<KEY,DATA> *t_vector<KEY,DATA>::get_new_nexus(int)' being compiled
+  c:\users\павел\desktop\polynom3\polynom\t_vector.h(38): note: при компиляции функции-члена "<Нет данных>" класса класс <Нет данных>
+  c:\users\павел\desktop\polynom3\polynom\main.cpp(163): note: выполняется компиляция ссылки на экземпляр шаблон функции "t_vector<std::string,Polynom>::~t_vector(void)"
+  c:\users\павел\desktop\polynom3\polynom\main.cpp(163): note: выполняется компиляция ссылки на экземпляр шаблон класс "t_vector<std::string,Polynom>"
+c:\users\павел\desktop\polynom3\polynom\t_list.h(159): warning C4101: e: неиспользованная локальная переменная
+  c:\users\павел\desktop\polynom3\polynom\t_list.h(155): note: при компиляции функции-члена "<Нет данных>" класса класс <Нет данных>
+  c:\users\павел\desktop\polynom3\polynom\t_list.h(59): note: выполняется компиляция ссылки на экземпляр шаблон функции "void t_list<std::string,Polynom>::push_to(t_list<std::string,Polynom>::p_nexus *&,const Nexus<KEY,DATA> &)"
           with
           [
               KEY=std::string,
               DATA=Polynom
           ]
-  e:\polynom\t_vector.h(38): note: while compiling class template member function 't_vector<std::string,Polynom>::~t_vector(void)'
-  e:\polynom\main.cpp(162): note: see reference to function template instantiation 't_vector<std::string,Polynom>::~t_vector(void)' being compiled
-  e:\polynom\main.cpp(162): note: see reference to class template instantiation 't_vector<std::string,Polynom>' being compiled
-e:\polynom\t_list.h(159): warning C4101: 'e': unreferenced local variable
-  e:\polynom\t_list.h(155): note: while compiling class template member function 'void t_list<std::string,Polynom>::push_to(t_list<std::string,Polynom>::p_nexus *&,const Nexus<KEY,DATA> &)'
+  c:\users\павел\desktop\polynom3\polynom\t_list.h(40): note: при компиляции функции-члена "<Нет данных>" класса класс <Нет данных>
+  c:\users\павел\desktop\polynom3\polynom\main.cpp(227): note: выполняется компиляция ссылки на экземпляр шаблон функции "t_list<std::string,Polynom>::t_list(void)"
+  c:\users\павел\desktop\polynom3\polynom\main.cpp(227): note: выполняется компиляция ссылки на экземпляр шаблон класс "t_list<std::string,Polynom>"
+c:\users\павел\desktop\polynom3\polynom\t_vector_sorted.h(146): warning C4101: e: неиспользованная локальная переменная
+  c:\users\павел\desktop\polynom3\polynom\t_vector_sorted.h(140): note: при компиляции функции-члена "<Нет данных>" класса класс <Нет данных>
+  c:\users\павел\desktop\polynom3\polynom\t_vector_sorted.h(58): note: выполняется компиляция ссылки на экземпляр шаблон функции "Nexus<KEY,DATA> *t_vector_sorted<KEY,DATA>::get_new_nexus(int)"
           with
           [
               KEY=std::string,
               DATA=Polynom
           ]
-  e:\polynom\t_list.h(59): note: see reference to function template instantiation 'void t_list<std::string,Polynom>::push_to(t_list<std::string,Polynom>::p_nexus *&,const Nexus<KEY,DATA> &)' being compiled
-          with
-          [
-              KEY=std::string,
-              DATA=Polynom
-          ]
-  e:\polynom\t_list.h(40): note: while compiling class template member function 't_list<std::string,Polynom>::t_list(void)'
-  e:\polynom\main.cpp(226): note: see reference to function template instantiation 't_list<std::string,Polynom>::t_list(void)' being compiled
-  e:\polynom\main.cpp(226): note: see reference to class template instantiation 't_list<std::string,Polynom>' being compiled
-e:\polynom\t_vector_sorted.h(146): warning C4101: 'e': unreferenced local variable
-  e:\polynom\t_vector_sorted.h(140): note: while compiling class template member function 'Nexus<KEY,DATA> *t_vector_sorted<KEY,DATA>::get_new_nexus(int)'
-          with
-          [
-              KEY=std::string,
-              DATA=Polynom
-          ]
-  e:\polynom\t_vector_sorted.h(58): note: see reference to function template instantiation 'Nexus<KEY,DATA> *t_vector_sorted<KEY,DATA>::get_new_nexus(int)' being compiled
-          with
-          [
-              KEY=std::string,
-              DATA=Polynom
-          ]
-  e:\polynom\t_vector_sorted.h(38): note: while compiling class template member function 't_vector_sorted<std::string,Polynom>::~t_vector_sorted(void)'
-  e:\polynom\main.cpp(290): note: see reference to function template instantiation 't_vector_sorted<std::string,Polynom>::~t_vector_sorted(void)' being compiled
-  e:\polynom\main.cpp(290): note: see reference to class template instantiation 't_vector_sorted<std::string,Polynom>' being compiled
-  uLab.vcxproj -> E:\Polynom\x64\Debug\uLab.exe
+  c:\users\павел\desktop\polynom3\polynom\t_vector_sorted.h(38): note: при компиляции функции-члена "<Нет данных>" класса класс <Нет данных>
+  c:\users\павел\desktop\polynom3\polynom\main.cpp(291): note: выполняется компиляция ссылки на экземпляр шаблон функции "t_vector_sorted<std::string,Polynom>::~t_vector_sorted(void)"
+  c:\users\павел\desktop\polynom3\polynom\main.cpp(291): note: выполняется компиляция ссылки на экземпляр шаблон класс "t_vector_sorted<std::string,Polynom>"
+  Создание кода...
+  uLab.vcxproj -> C:\Users\Павел\Desktop\polynom3\Polynom\x64\Debug\uLab.exe

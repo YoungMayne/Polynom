@@ -119,6 +119,7 @@
     <ClInclude Include="Polynom.h" />
     <ClInclude Include="rbtree.h" />
     <ClInclude Include="rlist.h" />
+    <ClInclude Include="t_hash.h" />
     <ClInclude Include="t_list.h" />
     <ClInclude Include="t_vector.h" />
     <ClInclude Include="t_vector_sorted.h" />

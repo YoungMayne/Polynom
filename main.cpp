@@ -5,6 +5,7 @@
 #include "rbtree.h"
 #include "t_vector.h"
 #include "t_vector_sorted.h"
+#include "t_hash.h"
 
 Polynom getPolynomFromConsole() {
 		std::vector<Monom> mons;
