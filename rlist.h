@@ -42,9 +42,15 @@ rlist<Type>::rlist(const Type &data) {
 template<typename Type>
 rlist<Type>::~rlist() {
 		while (lst != nullptr) {
-				Node *temp = lst;
-				lst = lst->next;
-				delete temp;
+				if (lst->next == lst) {
+						delete lst;
+						lst = nullptr;
+				}
+				else {
+						Node *temp = lst;
+						lst = lst->next;
+						delete temp;
+				}
 		}
 }
 
@@ -73,9 +79,15 @@ void rlist<Type>::push(const Type &data) {
 template<typename Type>
 void rlist<Type>::clear() {
 		while (lst != nullptr) {
-				Node *temp = lst;
-				lst = lst->next;
-				delete temp;
+				if (lst->next == lst) {
+						delete lst;
+						lst = nullptr;
+				}
+				else {
+						Node *temp = lst;
+						lst = lst->next;
+						delete temp;
+				}
 		}
 }
 

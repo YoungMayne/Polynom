@@ -116,6 +116,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="menu.h" />
+    <ClInclude Include="Monom.h" />
     <ClInclude Include="Polynom.h" />
     <ClInclude Include="rbtree.h" />
     <ClInclude Include="rlist.h" />
@@ -126,7 +127,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="Polynom.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -27,9 +27,6 @@
     <ClInclude Include="t_vector_sorted.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Polynom.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="menu.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -39,11 +36,14 @@
     <ClInclude Include="t_hash.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Monom.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Polynom.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Polynom.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>

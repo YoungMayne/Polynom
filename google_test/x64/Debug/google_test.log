@@ -1,2 +1,7 @@
-﻿  test.cpp
-  google_test.vcxproj -> C:\Users\Павел\Desktop\polinom\Polynom\x64\Debug\google_test.exe
+﻿  test_polynom.cpp
+e:\polynom\monom.h(216): warning C4244: '*=': conversion from 'double' to 'int', possible loss of data
+e:\polynom\monom.h(219): warning C4244: '*=': conversion from 'double' to 'int', possible loss of data
+e:\polynom\monom.h(222): warning C4244: '*=': conversion from 'double' to 'int', possible loss of data
+e:\polynom\monom.h(258): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+e:\polynom\polynom.h(170): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+  google_test.vcxproj -> E:\Polynom\x64\Debug\google_test.exe

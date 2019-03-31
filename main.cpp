@@ -8,35 +8,12 @@
 #include "t_hash.h"
 
 Polynom getPolynomFromConsole() {
-		std::vector<Monom> mons;
 		std::string pString;
 
-		std::cout << "\nEnter polynom\nExample: {a, b} {c, d} {e, f}\n\n\t";
+		std::cout << "\nEnter polynom\nExample: x^2y + xy + z\n\n\t";
 		std::getline(std::cin, pString);
 
-		float coef = 1;
-		float degree = 1;
-		std::string number;
-
-		for (const auto &c : pString) {
-				if (c == ' ' || c == '{') {
-						continue;
-				}
-				else if (c == ',') {
-						coef = atof(number.c_str());
-						number.clear();
-				}
-				else if (c == '}') {
-						degree = atof(number.c_str());
-						mons.push_back(Monom{ coef, degree });
-						number.clear();
-				}
-				else {
-						number += c;
-				}
-		}
-
-		return Polynom(mons);
+		return Polynom(pString);
 }
 
 std::string createDefaultMenu(int remove = -1) {
@@ -56,12 +33,17 @@ void Polynom_menu() {
 		Polynom p2;
 
 		auto create_polynom_menu = []() {
-				menu m({"Show", "Add", "Mult", "Divide", "Derivide", "Integrate", "Calculate"});
+				menu m({ "Show", "Add", "Mult", "Divide", "Derivide", "Integrate", "Calculate" });
 				return m.join();
 		};
 
 		auto create_add_polynom_menu = []() {
 				menu m({ "First", "Second", "Both" });
+				return m.join();
+		};
+
+		auto create_d_menu = []() {
+				menu m({ "dx", "dy", "dz" });
 				return m.join();
 		};
 
@@ -91,28 +73,71 @@ void Polynom_menu() {
 								_getch();
 						}
 				}
+				else if (exitCode == "Derivide") {
+						std::string eCode = create_d_menu();
+						system("cls");
+						std::cout << '\t' << exitCode << std::endl;
+						std::cout << '\t' << eCode << std::endl << std::endl;
+						std::cout << '(' << p1.to_str() << ")'" << eCode << " = ";
+						if (eCode == "dx") {
+								std::cout << p1.d(x).to_str() << std::endl;
+						}
+						if (eCode == "dy") {
+								std::cout << p1.d(y).to_str() << std::endl;
+						}
+						if (eCode == "dz") {
+								std::cout << p1.d(z).to_str() << std::endl;
+						}
+						if (eCode != "NULL") {
+								_getch();
+						}
+				}
+				else if (exitCode == "Integrate") {
+						std::string eCode = create_d_menu();
+						system("cls");
+						std::cout << '\t' << exitCode << std::endl;
+						std::cout << '(' << p1.to_str() << ')' << eCode << " = ";
+						if (eCode == "dx") {
+								std::cout << p1.Id(x).to_str() << std::endl;
+						}
+						if (eCode == "dy") {
+								std::cout << p1.Id(y).to_str() << std::endl;
+						}
+						if (eCode == "dz") {
+								std::cout << p1.Id(z).to_str() << std::endl;
+						}
+						if (eCode != "NULL") {
+								_getch();
+						}
+				}
 				else {
 						if (exitCode == "Show") {
-								std::cout << p1 << std::endl;
-								std::cout << p2 << std::endl;
+								std::cout << p1.to_str() << std::endl;
+								std::cout << p2.to_str() << std::endl;
 						}
 						else if (exitCode == "Mult") {
-								std::cout << p1.mult(p2) << std::endl;
+								std::cout << p1.to_str() << std::endl;
+								std::cout << p2.to_str() << std::endl;
+								std::cout << "\nmult: " << p1.mult(p2).to_str() << std::endl;
 						}
 						else if (exitCode == "Divide") {
-								std::cout << p1.div(p2) << std::endl;
+								std::cout << p1.to_str() << std::endl;
+								std::cout << p2.to_str() << std::endl;
+								std::cout << "\ndivide: " << p1.div(p2).to_str() << std::endl;
 						}
-						else if (exitCode == "Derivide") {
-								std::cout << p1.derivative() << std::endl;
-						}
-						else if (exitCode == "Integrate") {
-								std::cout << p1.integrate() << std::endl;
-						}
+
 						else if (exitCode == "Calculate") {
-								float point;
-								std::cout << "Enter the point: ";
-								std::cin >> point;
-								std::cout << p1.calculate(point) << std::endl;
+								int pointX;
+								int pointY;
+								int pointZ;
+								std::cout << "Enter the point x: ";
+								std::cin >> pointX;
+								std::cout << "Enter the point y: ";
+								std::cin >> pointY;
+								std::cout << "Enter the point z: ";
+								std::cin >> pointZ;
+								std::cout << std::endl << p1.to_str() << std::endl;
+								std::cout << "calc(" << pointX << ',' << pointY << ',' << pointZ << "): " << p1.calculate(pointX, pointY, pointZ) << std::endl;
 						}
 						else if (exitCode == "NULL") {
 								return;
@@ -133,7 +158,7 @@ void RingList_menu() {
 				if (exitCode == "Add") {
 						Polynom temp = getPolynomFromConsole();
 						r.push(temp);
-						std::cout << "Added " << temp << std::endl;				
+						std::cout << "Added " << temp.to_str() << std::endl;				
 				}
 				else if (exitCode == "Remove") {			
 						std::cout << "\n\tTop element removed" << std::endl;
@@ -145,7 +170,7 @@ void RingList_menu() {
 								std::cout << "\n\tList is empty" << std::endl;
 						}
 						else {
-								std::cout << r.get() << std::endl;
+								std::cout << r.get().to_str() << std::endl;
 						}
 				}
 				else if (exitCode == "Clear") {
@@ -173,7 +198,7 @@ void LinearArrayTable_menu() {
 						std::getline(std::cin, key);
 						Polynom temp = getPolynomFromConsole();
 						if (t.add({ key, temp }) == true) {
-								std::cout << "Added " << temp << std::endl;
+								std::cout << "Added " << temp.to_str() << std::endl;
 						}
 						else {
 								std::cout << "Polynom is already exists" << std::endl;
@@ -206,7 +231,7 @@ void LinearArrayTable_menu() {
 
 						Nexus<std::string, Polynom> temp;
 						if (t.get(key, temp) == true) {
-								std::cout << "\n\t" <<  temp.data << std::endl;
+								std::cout << "\n\t" <<  temp.data.to_str() << std::endl;
 						}
 						else {
 								std::cout << "\n\t Polynom does not exist" << std::endl;
@@ -237,7 +262,7 @@ void LinearListTable_menu() {
 						std::getline(std::cin, key);
 						Polynom temp = getPolynomFromConsole();
 						if (t.add({ key, temp }) == true) {
-								std::cout << "Added " << temp << std::endl;
+								std::cout << "Added " << temp.to_str() << std::endl;
 						}
 						else {
 								std::cout << "Polynom is already exists" << std::endl;
@@ -270,7 +295,7 @@ void LinearListTable_menu() {
 
 						Nexus<std::string, Polynom> temp;
 						if (t.get(key, temp) == true) {
-								std::cout << "\n\t" << temp.data << std::endl;
+								std::cout << "\n\t" << temp.data.to_str() << std::endl;
 						}
 						else {
 								std::cout << "\n\t Polynom does not exist" << std::endl;
@@ -301,7 +326,7 @@ void SortedArrayTable_menu() {
 						std::getline(std::cin, key);
 						Polynom temp = getPolynomFromConsole();
 						if (t.add({ key, temp }) == true) {
-								std::cout << "Added " << temp << std::endl;
+								std::cout << "Added " << temp.to_str() << std::endl;
 						}
 						else {
 								std::cout << "Polynom is already exists" << std::endl;
@@ -334,7 +359,7 @@ void SortedArrayTable_menu() {
 
 						Nexus<std::string, Polynom> temp;
 						if (t.get(key, temp) == true) {
-								std::cout << "\n\t" << temp.data << std::endl;
+								std::cout << "\n\t" << temp.data.to_str() << std::endl;
 						}
 						else {
 								std::cout << "\n\t Polynom does not exist" << std::endl;
@@ -386,15 +411,7 @@ void createMenu() {
 }
 
 int main() {
-		//createMenu();
-		rbtree<std::string, int> t;
-		t.add({ "DOG", 1 });
-		t.add({ "-", 4 });
-		Nexus<std::string, int> result;
-		if (t.get("DOG", result) == true) {
-				std::cout << result.data << std::endl;
-		}
-		
-		system("pause");
+		createMenu();
+
 		return 0;
 }

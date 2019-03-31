@@ -1,37 +1,188 @@
 #pragma once
-#include <iostream>
-#include <vector>
+#include "Monom.h"
 
-struct Monom {
-		float coefficient;
-		float degree;
-};
-
-typedef std::vector<Monom> m_vector;
-
-#ifndef _POLYNOM_H
-#define _POLYNOM_H
+#ifndef _Polynom_H		
+#define _Polynom_H
 
 class Polynom {
 public:
-		Polynom();
-		Polynom(const m_vector &mons);
-		Polynom(const Polynom &pol);
-		~Polynom();
+		Polynom() {}
+		Polynom(const std::string &pol);
 
+		Polynom add(const Polynom &other);
+		Polynom sub(const Polynom &other);
 		Polynom mult(const Polynom &other);
-		Polynom div(const Polynom &other);
-		Polynom derivative(int quantity = 1);
-		Polynom integrate();
+		Polynom div(Polynom &other);
+		Polynom d(vType dwhat);
+		Polynom Id(vType dwhat);
+		Polynom operator=(const std::string &pol);
 
-		float calculate(float point);
-		float degree();
+		int degree();
+		int calculate(int x = 0, int y = 0, int z = 0);
 
-		Polynom& operator=(const Polynom &pol);
-		friend std::ostream & operator<<(std::ostream & os, const Polynom & p);	
-
+		std::string to_str();
 private:
-		m_vector monoms;
+		std::vector<Monom> mons;
+
+		bool greater_than(Polynom &other);
+
+		Polynom& simpify();
 };
+
+//..........PUBLIC............//
+
+Polynom::Polynom(const std::string & pol) {
+		std::string temp;
+
+		for (const auto &c : pol) {
+				if ((c == '-' || c == '+') && temp.empty() == false) {
+						mons.push_back(Monom(temp));
+						temp.clear();
+				}
+				if (c != ' ') {
+						temp.push_back(c);
+				}
+		}
+		mons.push_back(Monom(temp));
+		simpify();
+}
+
+inline Polynom Polynom::add(const Polynom & other) {
+		Polynom result = *this;
+
+		for (const auto &m : other.mons) {
+				result.mons.push_back(m);
+		}
+
+		return result.simpify();
+}
+
+inline Polynom Polynom::sub(const Polynom & other) {
+		Polynom result = *this;
+
+		for (auto m : other.mons) {
+				result.mons.push_back(m.mult(Monom("-1")));
+		}
+
+		return result.simpify();
+}
+
+inline Polynom Polynom::mult(const Polynom & other) {
+		Polynom result;
+
+		for (auto &m : mons) {
+				for (auto &o : other.mons) {
+						result.mons.push_back(m.mult(o));
+				}
+		}
+
+		return result.simpify();
+}
+
+inline Polynom Polynom::div(Polynom & other) {
+		Polynom current = *this;
+		Polynom result;
+
+		while (current.greater_than(other)) {
+				result.mons.push_back(current.mons.front().div(other.mons.front()));
+				current = current.sub(Polynom(result.mons.back().to_str()).mult(other));
+		}
+
+		return result.simpify();
+}
+
+inline Polynom Polynom::d(vType dwhat) {
+		Polynom result;
+
+		for (auto &m : mons) {
+				result.mons.push_back(m.d(dwhat));
+		}
+
+		return result.simpify();
+}
+
+inline Polynom Polynom::Id(vType dwhat) {
+		Polynom result;
+
+		for (auto &m : mons) {
+				result.mons.push_back(m.Id(dwhat));
+		}
+
+		return result.simpify();
+}
+
+inline Polynom Polynom::operator=(const std::string & pol) {
+		return *this = Polynom(pol);
+}
+
+//..........PRIVATE............//
+
+inline std::string Polynom::to_str() {
+		std::string result;
+
+		if (mons.empty() == true) {
+				result += '0';
+		}
+		else {
+				for (auto &m : mons) {
+						result += m.to_str() + ' ';
+				}
+		}
+
+		return result;
+}
+
+inline int Polynom::degree() {
+		int high = 0;
+
+		for (auto &m : mons) {
+				int temp = m.degree();
+				if (temp > high) {
+						high = temp;
+				}
+		}
+
+		return high;
+}
+
+inline int Polynom::calculate(int x, int y, int z) {
+		int result = 0;
+
+		for (auto &m : mons) {
+				result += m.calculate(x, y, z);
+		}
+
+		return result;
+}
+
+inline bool Polynom::greater_than(Polynom & other) {
+		for (int i = 0; i < mons.size() && i < other.mons.size(); ++i) {
+				if (mons[i].greater_than(other.mons[i])) {
+						return true;
+				}
+		}
+
+		return false;
+}
+
+inline Polynom& Polynom::simpify() {
+		for (int i = 0; i < mons.size(); ++i) {
+				for (int j = mons.size() - 1; j != i; --j) {
+						if (mons[i] == mons[j]) {
+								mons[i] = mons[i].add(mons[j]);
+								mons.erase(mons.begin() + j);
+								return this->simpify();
+						}
+						//else if (mons[i].degree() < mons[j].degree()) {
+						//		std::swap(mons[i], mons[j]);
+						//}
+				}
+				if (mons[i].dead() == true) {
+						mons.erase(mons.begin() + i);
+				}
+		}
+
+		return *this;
+}
 
 #endif 
