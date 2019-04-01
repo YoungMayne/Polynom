@@ -50,6 +50,7 @@ rlist<Type>::~rlist() {
 						Node *temp = lst;
 						lst = lst->next;
 						delete temp;
+						temp = nullptr;
 				}
 		}
 }
@@ -87,6 +88,7 @@ void rlist<Type>::clear() {
 						Node *temp = lst;
 						lst = lst->next;
 						delete temp;
+						temp = nullptr;
 				}
 		}
 }
