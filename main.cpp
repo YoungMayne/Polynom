@@ -18,7 +18,7 @@ Polynom getPolynomFromConsole() {
 
 std::string createDefaultMenu(int remove = -1) {
 		menu m;
-		std::vector<std::string> items({"Add", "Remove", "Check",  "Get Element", "Clear"});
+		std::vector<std::string> items({ "Add", "Remove", "Check",  "Get Element", "Clear" });
 		if (remove > -1) {
 				items.erase(items.begin() + remove);
 		}
@@ -158,12 +158,12 @@ void RingList_menu() {
 				if (exitCode == "Add") {
 						Polynom temp = getPolynomFromConsole();
 						r.push(temp);
-						std::cout << "Added " << temp.to_str() << std::endl;				
+						std::cout << "Added " << temp.to_str() << std::endl;
 				}
-				else if (exitCode == "Remove") {			
+				else if (exitCode == "Remove") {
 						std::cout << "\n\tTop element removed" << std::endl;
 
-						r.pop();											
+						r.pop();
 				}
 				else if (exitCode == "Get Element") {
 						if (r.empty()) {
@@ -231,7 +231,7 @@ void LinearArrayTable_menu() {
 
 						Nexus<std::string, Polynom> temp;
 						if (t.get(key, temp) == true) {
-								std::cout << "\n\t" <<  temp.data.to_str() << std::endl;
+								std::cout << "\n\t" << temp.data.to_str() << std::endl;
 						}
 						else {
 								std::cout << "\n\t Polynom does not exist" << std::endl;

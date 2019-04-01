@@ -79,7 +79,7 @@ inline bool rbtree<KEY, DATA>::add(const Nexus<KEY, DATA>& obj) {
 }
 
 template<typename KEY, typename DATA>
-inline bool rbtree<KEY, DATA>::get(const KEY &key, Nexus<KEY, DATA> &result){
+inline bool rbtree<KEY, DATA>::get(const KEY &key, Nexus<KEY, DATA> &result) {
 		leaf *current = head;
 
 		while (current != nullptr) {
@@ -96,7 +96,7 @@ inline bool rbtree<KEY, DATA>::get(const KEY &key, Nexus<KEY, DATA> &result){
 }
 
 template<typename KEY, typename DATA>
-inline void rbtree<KEY, DATA>::remove(const KEY & key){
+inline void rbtree<KEY, DATA>::remove(const KEY & key) {
 		leaf *x, *y;
 
 		if (z->left == NIL || z->right == NIL) {

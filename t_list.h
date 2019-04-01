@@ -1,13 +1,18 @@
 #pragma once
 
-#ifndef _t_list_H
-#define _t_list_H
+#ifndef _Node
+#define _Node
 
 template<typename KEY, typename DATA>
 struct Nexus {
 		KEY key;
 		DATA data;
 };
+
+#endif
+
+#ifndef _t_list_H
+#define _t_list_H
 
 template<typename KEY, typename DATA>
 class t_list {

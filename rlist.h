@@ -18,7 +18,7 @@ public:
 
 		Type get();
 
-		bool empty();		
+		bool empty();
 
 private:
 		struct Node {
@@ -26,7 +26,7 @@ private:
 				Node *next;
 		};
 
-		Node* lst;
+		Node* lst = nullptr;
 };
 
 //-------------PUBLIC-------------//

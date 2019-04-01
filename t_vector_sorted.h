@@ -1,5 +1,16 @@
 #pragma once
 
+#ifndef _Node
+#define _Node
+
+template<typename KEY, typename DATA>
+struct Nexus {
+		KEY key;
+		DATA data;
+};
+
+#endif
+
 #ifndef _t_vector_sorted_H
 #define _t_vector_sorted_H
 
@@ -30,12 +41,12 @@ private:
 //-------------PUBLIC-------------//
 
 template<typename KEY, typename DATA>
-inline t_vector_sorted<KEY, DATA>::t_vector_sorted(const Nexus<KEY, DATA>& obj){
+inline t_vector_sorted<KEY, DATA>::t_vector_sorted(const Nexus<KEY, DATA>& obj) {
 		add(obj);
 }
 
 template<typename KEY, typename DATA>
-inline t_vector_sorted<KEY, DATA>::~t_vector_sorted(){
+inline t_vector_sorted<KEY, DATA>::~t_vector_sorted() {
 		if (t_size > 0) {
 				delete[]table;
 		}

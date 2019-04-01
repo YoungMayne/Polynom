@@ -1,6 +1,17 @@
 #pragma once
 #include <iostream>
 
+#ifndef _Node
+#define _Node
+
+template<typename KEY, typename DATA>
+struct Nexus {
+		KEY key;
+		DATA data;
+};
+
+#endif
+
 #ifndef _t_vector_H
 #define _t_vector_H
 
@@ -58,7 +69,7 @@ bool t_vector<KEY, DATA>::add(const Nexus<KEY, DATA> &obj) {
 		delete[] table;
 		table = temp;
 		t_size += 1;
-		
+
 		return true;
 }
 

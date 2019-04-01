@@ -9,7 +9,7 @@ TEST(Polynom, can_add_polynoms) {
 		Polynom a("x^2 + y + z^3");
 		Polynom b("-2x^2 + z^3");
 		EXPECT_EQ(a.add(b).to_str(), "-1x^2 +1y^1 +2z^3 ");
-		
+
 }
 
 TEST(Polynom, can_subtract_polynoms) {

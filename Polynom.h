@@ -82,8 +82,9 @@ inline Polynom Polynom::mult(const Polynom & other) {
 inline Polynom Polynom::div(Polynom & other) {
 		Polynom current = *this;
 		Polynom result;
+		int blocker = 0;//breaks infinity cycle
 
-		while (current.greater_than(other)) {
+		while (current.greater_than(other) && blocker++ <= mons.size()) {
 				result.mons.push_back(current.mons.front().div(other.mons.front()));
 				current = current.sub(Polynom(result.mons.back().to_str()).mult(other));
 		}
