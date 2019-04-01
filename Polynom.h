@@ -13,6 +13,7 @@ public:
 		Polynom sub(const Polynom &other);
 		Polynom mult(const Polynom &other);
 		Polynom div(Polynom &other);
+		Polynom mod(Polynom &other);
 		Polynom d(vType dwhat);
 		Polynom Id(vType dwhat);
 		Polynom operator=(const std::string &pol);
@@ -82,14 +83,25 @@ inline Polynom Polynom::mult(const Polynom & other) {
 inline Polynom Polynom::div(Polynom & other) {
 		Polynom current = *this;
 		Polynom result;
-		int blocker = 0;//breaks infinity cycle
 
-		while (current.greater_than(other) && blocker++ <= mons.size()) {
+		while (current.greater_than(other)) {
 				result.mons.push_back(current.mons.front().div(other.mons.front()));
 				current = current.sub(Polynom(result.mons.back().to_str()).mult(other));
 		}
 
 		return result.simpify();
+}
+
+inline Polynom Polynom::mod(Polynom & other) {
+		Polynom current = *this;
+		Polynom result;
+
+		while (current.greater_than(other)) {
+				result.mons.push_back(current.mons.front().div(other.mons.front()));
+				current = current.sub(Polynom(result.mons.back().to_str()).mult(other));
+		}
+
+		return current.simpify();
 }
 
 inline Polynom Polynom::d(vType dwhat) {
@@ -180,6 +192,7 @@ inline Polynom& Polynom::simpify() {
 				}
 				if (mons[i].dead() == true) {
 						mons.erase(mons.begin() + i);
+						return this->simpify();
 				}
 		}
 

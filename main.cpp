@@ -411,7 +411,14 @@ void createMenu() {
 }
 
 int main() {
-		createMenu();
+		//createMenu();
+
+		Polynom p("2x + 4");
+		Polynom a("4y");
+
+		std::cout << p.mult(a).div(p).to_str() << std::endl;
+
+		system("pause");
 
 		return 0;
 }
