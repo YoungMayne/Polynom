@@ -18,7 +18,7 @@ Polynom getPolynomFromConsole() {
 
 std::string createDefaultMenu(int remove = -1) {
 		menu m;
-		std::vector<std::string> items({ "Add", "Remove", "Check",  "Get Element", "Clear" });
+		std::vector<std::string> items({ "Add", "Remove", "Check",  "Get Element", "Clear", "Print All" });
 		if (remove > -1) {
 				items.erase(items.begin() + remove);
 		}
@@ -33,7 +33,7 @@ void Polynom_menu() {
 		Polynom p2;
 
 		auto create_polynom_menu = []() {
-				menu m({ "Show", "Add", "Mult", "Divide", "Derivide", "Integrate", "Calculate" });
+				menu m({ "Show", "Add", "Mult", "Divide", "Mod", "Derivide", "Integrate", "Calculate" });
 				return m.join();
 		};
 
@@ -71,6 +71,7 @@ void Polynom_menu() {
 						if (simpleMenuExitCode != "NULL") {
 								std::cout << "Polynom(s) are added" << std::endl;
 								_getch();
+								_getch();
 						}
 				}
 				else if (exitCode == "Derivide") {
@@ -90,6 +91,7 @@ void Polynom_menu() {
 						}
 						if (eCode != "NULL") {
 								_getch();
+								_getch();
 						}
 				}
 				else if (exitCode == "Integrate") {
@@ -108,6 +110,7 @@ void Polynom_menu() {
 						}
 						if (eCode != "NULL") {
 								_getch();
+								_getch();
 						}
 				}
 				else {
@@ -125,11 +128,16 @@ void Polynom_menu() {
 								std::cout << p2.to_str() << std::endl;
 								std::cout << "\ndivide: " << p1.div(p2).to_str() << std::endl;
 						}
+						else if (exitCode == "Mod") {
+								std::cout << p1.to_str() << std::endl;
+								std::cout << p2.to_str() << std::endl;
+								std::cout << "\nmod: " << p1.mod(p2).to_str() << std::endl;
+						}
 
 						else if (exitCode == "Calculate") {
-								int pointX;
-								int pointY;
-								int pointZ;
+								double pointX;
+								double pointY;
+								double pointZ;
 								std::cout << "Enter the point x: ";
 								std::cin >> pointX;
 								std::cout << "Enter the point y: ";
@@ -142,6 +150,7 @@ void Polynom_menu() {
 						else if (exitCode == "NULL") {
 								return;
 						}
+						_getch();
 						_getch();
 				}
 		}
@@ -180,6 +189,7 @@ void RingList_menu() {
 				else if (exitCode == "NULL") {
 						return;
 				}
+				_getch();
 				_getch();
 		}
 }
@@ -245,6 +255,7 @@ void LinearArrayTable_menu() {
 						return;
 				}
 				_getch();
+				_getch();
 		}
 }
 
@@ -308,6 +319,7 @@ void LinearListTable_menu() {
 				else if (exitCode == "NULL") {
 						return;
 				}
+				_getch();
 				_getch();
 		}
 }
@@ -373,6 +385,7 @@ void SortedArrayTable_menu() {
 						return;
 				}
 				_getch();
+				_getch();
 		}
 }
 
@@ -437,6 +450,7 @@ void RedBlackTree_menu() {
 						return;
 				}
 				_getch();
+				_getch();
 		}
 }
 
@@ -500,6 +514,7 @@ void HashTable_menu() {
 				else if (exitCode == "NULL") {
 						return;
 				}
+				_getch();
 				_getch();
 		}
 }

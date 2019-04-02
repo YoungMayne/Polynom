@@ -73,7 +73,9 @@ inline bool t_vector_sorted<KEY, DATA>::add(const Nexus<KEY, DATA>& obj) {
 		for (int i = index; i < t_size; ++i) {
 				temp[i + 1] = table[i];
 		}
-		delete[] table;
+		if (t_size > 0) {
+				delete[] table;
+		}
 		table = temp;
 		table[index] = obj;
 		t_size += 1;

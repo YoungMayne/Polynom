@@ -8,7 +8,7 @@ TEST(Polynom, can_create_polynom) {
 TEST(Polynom, can_add_polynoms) {
 		Polynom a("x^2 + y + z^3");
 		Polynom b("-2x^2 + z^3");
-		EXPECT_EQ(a.add(b).to_str(), "-1x^2 +1y^1 +2z^3 ");
+		EXPECT_EQ(a.add(b).to_str(), "-1.000000x^2 +1.000000y^1 +2.000000z^3 ");
 
 }
 

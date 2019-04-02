@@ -19,7 +19,7 @@ public:
 		Polynom operator=(const std::string &pol);
 
 		int degree();
-		int calculate(int x = 0, int y = 0, int z = 0);
+		double calculate(double x = 0, double y = 0, double z = 0);
 
 		std::string to_str();
 private:
@@ -84,8 +84,23 @@ inline Polynom Polynom::div(Polynom & other) {
 		Polynom current = *this;
 		Polynom result;
 
-		while (current.greater_than(other)) {
-				result.mons.push_back(current.mons.front().div(other.mons.front()));
+		while (current.greater_than(other) && current.mons.size() >= other.mons.size()) {
+				int index = -1;
+				int other_index = 0;
+
+				for (int i = 0; i < other.mons.size(); ++i) {
+						for (int j = 0; j < current.mons.size(); ++j) {
+								if (current.mons[j].contains(other.mons[i]) == true) {
+										index = j;
+										other_index = i;
+										break;
+								}
+						}
+				}
+				if (index == -1) {
+						return result.simpify();
+				}
+				result.mons.push_back(current.mons[index].div(other.mons[other_index]));
 				current = current.sub(Polynom(result.mons.back().to_str()).mult(other));
 		}
 
@@ -96,8 +111,23 @@ inline Polynom Polynom::mod(Polynom & other) {
 		Polynom current = *this;
 		Polynom result;
 
-		while (current.greater_than(other)) {
-				result.mons.push_back(current.mons.front().div(other.mons.front()));
+		while (current.greater_than(other) && current.mons.size() >= other.mons.size()) {
+				int index = -1;
+				int other_index = 0;
+
+				for (int i = 0; i < other.mons.size(); ++i) {
+						for (int j = 0; j < current.mons.size(); ++j) {
+								if (current.mons[j].contains(other.mons[i]) == true) {
+										index = j;
+										other_index = i;
+										break;
+								}
+						}
+				}
+				if (index == -1) {
+						return current.simpify();
+				}
+				result.mons.push_back(current.mons[index].div(other.mons[other_index]));
 				current = current.sub(Polynom(result.mons.back().to_str()).mult(other));
 		}
 
@@ -158,8 +188,8 @@ inline int Polynom::degree() {
 		return high;
 }
 
-inline int Polynom::calculate(int x, int y, int z) {
-		int result = 0;
+inline double Polynom::calculate(double x, double y, double z) {
+		double result = 0;
 
 		for (auto &m : mons) {
 				result += m.calculate(x, y, z);

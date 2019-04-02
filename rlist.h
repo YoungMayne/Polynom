@@ -19,7 +19,6 @@ public:
 		Type get();
 
 		bool empty();
-
 private:
 		struct Node {
 				Type data;

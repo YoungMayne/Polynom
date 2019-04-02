@@ -32,14 +32,15 @@ public:
 		bool operator==(const Monom &other);
 		bool dead();
 		bool greater_than(Monom &other);
+		bool contains(const Monom &other);
 
 		int degree();
-		int calculate(int x = 0, int y = 0, int z = 0);
+		double calculate(double x = 0, double y = 0, double z = 0);
 
 		std::string to_str();
 private:
 		std::vector<Var> vars;
-		int coefficient = 1;
+		double coefficient = 1.0;
 
 		Monom() {};
 
@@ -197,6 +198,29 @@ inline bool Monom::greater_than(Monom & other) {
 		}
 }
 
+inline bool Monom::contains(const Monom & other) {
+		if (other.vars.size() > vars.size()) {
+				return false;
+		}
+		for (auto &v : other.vars) {
+				int index = -1;
+				for (int i = 0; i < vars.size(); ++i) {
+						if (v.type == vars[i].type && v.degree <= vars[i].degree) {
+								index = i;
+								break;
+						}
+				}
+				if (index == -1) {
+						return false;
+				}
+				else {
+						index = -1;
+				}
+		}
+
+		return true;
+}
+
 inline int Monom::degree() {
 		int high = 0;
 		for (auto &v : vars) {
@@ -207,8 +231,8 @@ inline int Monom::degree() {
 		return high;
 }
 
-inline int Monom::calculate(int x, int y, int z) {
-		int result = coefficient;
+inline double Monom::calculate(double x, double y, double z) {
+		double result = coefficient;
 
 		for (const auto &v : vars) {
 				switch (v.type) {

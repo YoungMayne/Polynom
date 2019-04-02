@@ -22,7 +22,6 @@ public:
 
 		void remove(const KEY &key);
 		void clear();
-
 private:
 		struct leaf {
 				Nexus<KEY, DATA> data;

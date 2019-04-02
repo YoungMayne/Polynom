@@ -1,8 +1,99 @@
-﻿  test_polynom.cpp
-e:\polynom\monom.h(216): warning C4244: '*=': conversion from 'double' to 'int', possible loss of data
-e:\polynom\monom.h(219): warning C4244: '*=': conversion from 'double' to 'int', possible loss of data
-e:\polynom\monom.h(222): warning C4244: '*=': conversion from 'double' to 'int', possible loss of data
-e:\polynom\monom.h(258): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-e:\polynom\polynom.h(183): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-cl : Command line warning D9028: minimal rebuild failure, reverting to normal build
-  google_test.vcxproj -> E:\Polynom\x64\Debug\google_test.exe
+﻿  pch.cpp
+c:\temp\polynom\packages\microsoft.googletest.v140.windesktop.msvcstl.static.rt-dyn.1.8.0\build\native\include\gtest\internal\gtest-port.h(996): warning C4996: 'std::tr1': warning STL4002: The non-Standard std::tr1 namespace and TR1-only machinery are deprecated and will be REMOVED. You can define _SILENCE_TR1_NAMESPACE_DEPRECATION_WARNING to acknowledge that you have received this warning.
+  c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.15.26726\include\tuple(1333): note:  см. объявление "std::tr1"
+c:\temp\polynom\packages\microsoft.googletest.v140.windesktop.msvcstl.static.rt-dyn.1.8.0\build\native\include\gtest\internal\gtest-port.h(997): warning C4996: 'std::tr1': warning STL4002: The non-Standard std::tr1 namespace and TR1-only machinery are deprecated and will be REMOVED. You can define _SILENCE_TR1_NAMESPACE_DEPRECATION_WARNING to acknowledge that you have received this warning.
+  c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.15.26726\include\tuple(1333): note:  см. объявление "std::tr1"
+c:\temp\polynom\packages\microsoft.googletest.v140.windesktop.msvcstl.static.rt-dyn.1.8.0\build\native\include\gtest\internal\gtest-port.h(998): warning C4996: 'std::tr1': warning STL4002: The non-Standard std::tr1 namespace and TR1-only machinery are deprecated and will be REMOVED. You can define _SILENCE_TR1_NAMESPACE_DEPRECATION_WARNING to acknowledge that you have received this warning.
+  c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.15.26726\include\tuple(1333): note:  см. объявление "std::tr1"
+c:\temp\polynom\packages\microsoft.googletest.v140.windesktop.msvcstl.static.rt-dyn.1.8.0\build\native\include\gtest\internal\gtest-port.h(999): warning C4996: 'std::tr1': warning STL4002: The non-Standard std::tr1 namespace and TR1-only machinery are deprecated and will be REMOVED. You can define _SILENCE_TR1_NAMESPACE_DEPRECATION_WARNING to acknowledge that you have received this warning.
+  c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.15.26726\include\tuple(1333): note:  см. объявление "std::tr1"
+c:\temp\polynom\packages\microsoft.googletest.v140.windesktop.msvcstl.static.rt-dyn.1.8.0\build\native\include\gtest\internal\gtest-port.h(1000): warning C4996: 'std::tr1': warning STL4002: The non-Standard std::tr1 namespace and TR1-only machinery are deprecated and will be REMOVED. You can define _SILENCE_TR1_NAMESPACE_DEPRECATION_WARNING to acknowledge that you have received this warning.
+  c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.15.26726\include\tuple(1333): note:  см. объявление "std::tr1"
+c:\temp\polynom\packages\microsoft.googletest.v140.windesktop.msvcstl.static.rt-dyn.1.8.0\build\native\include\gtest\gtest-printers.h(600): warning C4996: 'std::tr1': warning STL4002: The non-Standard std::tr1 namespace and TR1-only machinery are deprecated and will be REMOVED. You can define _SILENCE_TR1_NAMESPACE_DEPRECATION_WARNING to acknowledge that you have received this warning.
+  c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.15.26726\include\tuple(1333): note:  см. объявление "std::tr1"
+c:\temp\polynom\packages\microsoft.googletest.v140.windesktop.msvcstl.static.rt-dyn.1.8.0\build\native\include\gtest\gtest-printers.h(605): warning C4996: 'std::tr1': warning STL4002: The non-Standard std::tr1 namespace and TR1-only machinery are deprecated and will be REMOVED. You can define _SILENCE_TR1_NAMESPACE_DEPRECATION_WARNING to acknowledge that you have received this warning.
+  c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.15.26726\include\tuple(1333): note:  см. объявление "std::tr1"
+c:\temp\polynom\packages\microsoft.googletest.v140.windesktop.msvcstl.static.rt-dyn.1.8.0\build\native\include\gtest\gtest-printers.h(610): warning C4996: 'std::tr1': warning STL4002: The non-Standard std::tr1 namespace and TR1-only machinery are deprecated and will be REMOVED. You can define _SILENCE_TR1_NAMESPACE_DEPRECATION_WARNING to acknowledge that you have received this warning.
+  c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.15.26726\include\tuple(1333): note:  см. объявление "std::tr1"
+c:\temp\polynom\packages\microsoft.googletest.v140.windesktop.msvcstl.static.rt-dyn.1.8.0\build\native\include\gtest\gtest-printers.h(615): warning C4996: 'std::tr1': warning STL4002: The non-Standard std::tr1 namespace and TR1-only machinery are deprecated and will be REMOVED. You can define _SILENCE_TR1_NAMESPACE_DEPRECATION_WARNING to acknowledge that you have received this warning.
+  c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.15.26726\include\tuple(1333): note:  см. объявление "std::tr1"
+c:\temp\polynom\packages\microsoft.googletest.v140.windesktop.msvcstl.static.rt-dyn.1.8.0\build\native\include\gtest\gtest-printers.h(620): warning C4996: 'std::tr1': warning STL4002: The non-Standard std::tr1 namespace and TR1-only machinery are deprecated and will be REMOVED. You can define _SILENCE_TR1_NAMESPACE_DEPRECATION_WARNING to acknowledge that you have received this warning.
+  c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.15.26726\include\tuple(1333): note:  см. объявление "std::tr1"
+c:\temp\polynom\packages\microsoft.googletest.v140.windesktop.msvcstl.static.rt-dyn.1.8.0\build\native\include\gtest\gtest-printers.h(625): warning C4996: 'std::tr1': warning STL4002: The non-Standard std::tr1 namespace and TR1-only machinery are deprecated and will be REMOVED. You can define _SILENCE_TR1_NAMESPACE_DEPRECATION_WARNING to acknowledge that you have received this warning.
+  c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.15.26726\include\tuple(1333): note:  см. объявление "std::tr1"
+c:\temp\polynom\packages\microsoft.googletest.v140.windesktop.msvcstl.static.rt-dyn.1.8.0\build\native\include\gtest\gtest-printers.h(632): warning C4996: 'std::tr1': warning STL4002: The non-Standard std::tr1 namespace and TR1-only machinery are deprecated and will be REMOVED. You can define _SILENCE_TR1_NAMESPACE_DEPRECATION_WARNING to acknowledge that you have received this warning.
+  c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.15.26726\include\tuple(1333): note:  см. объявление "std::tr1"
+c:\temp\polynom\packages\microsoft.googletest.v140.windesktop.msvcstl.static.rt-dyn.1.8.0\build\native\include\gtest\gtest-printers.h(639): warning C4996: 'std::tr1': warning STL4002: The non-Standard std::tr1 namespace and TR1-only machinery are deprecated and will be REMOVED. You can define _SILENCE_TR1_NAMESPACE_DEPRECATION_WARNING to acknowledge that you have received this warning.
+  c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.15.26726\include\tuple(1333): note:  см. объявление "std::tr1"
+c:\temp\polynom\packages\microsoft.googletest.v140.windesktop.msvcstl.static.rt-dyn.1.8.0\build\native\include\gtest\gtest-printers.h(646): warning C4996: 'std::tr1': warning STL4002: The non-Standard std::tr1 namespace and TR1-only machinery are deprecated and will be REMOVED. You can define _SILENCE_TR1_NAMESPACE_DEPRECATION_WARNING to acknowledge that you have received this warning.
+  c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.15.26726\include\tuple(1333): note:  см. объявление "std::tr1"
+c:\temp\polynom\packages\microsoft.googletest.v140.windesktop.msvcstl.static.rt-dyn.1.8.0\build\native\include\gtest\gtest-printers.h(653): warning C4996: 'std::tr1': warning STL4002: The non-Standard std::tr1 namespace and TR1-only machinery are deprecated and will be REMOVED. You can define _SILENCE_TR1_NAMESPACE_DEPRECATION_WARNING to acknowledge that you have received this warning.
+  c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.15.26726\include\tuple(1333): note:  см. объявление "std::tr1"
+c:\temp\polynom\packages\microsoft.googletest.v140.windesktop.msvcstl.static.rt-dyn.1.8.0\build\native\include\gtest\gtest-printers.h(661): warning C4996: 'std::tr1': warning STL4002: The non-Standard std::tr1 namespace and TR1-only machinery are deprecated and will be REMOVED. You can define _SILENCE_TR1_NAMESPACE_DEPRECATION_WARNING to acknowledge that you have received this warning.
+  c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.15.26726\include\tuple(1333): note:  см. объявление "std::tr1"
+c:\temp\polynom\packages\microsoft.googletest.v140.windesktop.msvcstl.static.rt-dyn.1.8.0\build\native\include\gtest\gtest-printers.h(878): warning C4996: 'std::tr1': warning STL4002: The non-Standard std::tr1 namespace and TR1-only machinery are deprecated and will be REMOVED. You can define _SILENCE_TR1_NAMESPACE_DEPRECATION_WARNING to acknowledge that you have received this warning.
+  c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.15.26726\include\tuple(1333): note:  см. объявление "std::tr1"
+  c:\temp\polynom\packages\microsoft.googletest.v140.windesktop.msvcstl.static.rt-dyn.1.8.0\build\native\include\gtest\gtest-printers.h(878): note: выполняется компиляция ссылки на экземпляр шаблон класс "testing::internal::TuplePolicy<TupleT>::tuple_element<I>"
+  c:\temp\polynom\packages\microsoft.googletest.v140.windesktop.msvcstl.static.rt-dyn.1.8.0\build\native\include\gtest\gtest-printers.h(886): note: выполняется компиляция ссылки на экземпляр шаблон класс "testing::internal::TuplePolicy<TupleT>"
+c:\temp\polynom\packages\microsoft.googletest.v140.windesktop.msvcstl.static.rt-dyn.1.8.0\build\native\include\gtest\gtest-printers.h(882): warning C4996: 'std::tr1': warning STL4002: The non-Standard std::tr1 namespace and TR1-only machinery are deprecated and will be REMOVED. You can define _SILENCE_TR1_NAMESPACE_DEPRECATION_WARNING to acknowledge that you have received this warning.
+  c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.15.26726\include\tuple(1333): note:  см. объявление "std::tr1"
+c:\temp\polynom\packages\microsoft.googletest.v140.windesktop.msvcstl.static.rt-dyn.1.8.0\build\native\include\gtest\gtest-printers.h(875): warning C4996: 'std::tr1': warning STL4002: The non-Standard std::tr1 namespace and TR1-only machinery are deprecated and will be REMOVED. You can define _SILENCE_TR1_NAMESPACE_DEPRECATION_WARNING to acknowledge that you have received this warning.
+  c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.15.26726\include\tuple(1333): note:  см. объявление "std::tr1"
+  c:\temp\polynom\packages\microsoft.googletest.v140.windesktop.msvcstl.static.rt-dyn.1.8.0\build\native\include\gtest\gtest-printers.h(961): note: выполняется компиляция ссылки на экземпляр шаблон класс "testing::internal::TuplePolicy<Tuple>"
+          with
+          [
+              Tuple=std::tuple<>
+          ]
+  c:\temp\polynom\packages\microsoft.googletest.v140.windesktop.msvcstl.static.rt-dyn.1.8.0\build\native\include\gtest\gtest-printers.h(601): note: выполняется компиляция ссылки на экземпляр шаблон функции "void testing::internal::PrintTupleTo<std::tuple<>>(const T &,std::ostream *)"
+          with
+          [
+              T=std::tuple<>
+          ]
+  test_polynom.cpp
+c:\temp\polynom\monom.h(282): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
+c:\temp\polynom\polynom.h(213): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
+  test.cpp
+c:\temp\polynom\rbtree.h(93): warning C4101: e: неиспользованная локальная переменная
+  c:\temp\polynom\rbtree.h(77): note: при компиляции функции-члена "<Нет данных>" класса класс <Нет данных>
+  c:\temp\polynom\google_test\test.cpp(309): note: выполняется компиляция ссылки на экземпляр шаблон функции "bool rbtree<int,int>::add(const Nexus<KEY,DATA> &)"
+          with
+          [
+              KEY=int,
+              DATA=int
+          ]
+  c:\temp\polynom\google_test\test.cpp(306): note: выполняется компиляция ссылки на экземпляр шаблон класс "rbtree<int,int>"
+c:\temp\polynom\t_list.h(164): warning C4101: e: неиспользованная локальная переменная
+  c:\temp\polynom\t_list.h(160): note: при компиляции функции-члена "<Нет данных>" класса класс <Нет данных>
+  c:\temp\polynom\t_list.h(64): note: выполняется компиляция ссылки на экземпляр шаблон функции "void t_list<int,int>::push_to(t_list<int,int>::p_nexus *&,const Nexus<KEY,DATA> &)"
+          with
+          [
+              KEY=int,
+              DATA=int
+          ]
+  c:\temp\polynom\t_list.h(45): note: при компиляции функции-члена "<Нет данных>" класса класс <Нет данных>
+  c:\temp\polynom\google_test\test.cpp(50): note: выполняется компиляция ссылки на экземпляр шаблон функции "t_list<int,int>::t_list(void)"
+  c:\temp\polynom\google_test\test.cpp(50): note: выполняется компиляция ссылки на экземпляр шаблон класс "t_list<int,int>"
+c:\temp\polynom\t_vector.h(142): warning C4101: e: неиспользованная локальная переменная
+  c:\temp\polynom\t_vector.h(136): note: при компиляции функции-члена "<Нет данных>" класса класс <Нет данных>
+  c:\temp\polynom\t_vector.h(57): note: выполняется компиляция ссылки на экземпляр шаблон функции "Nexus<KEY,DATA> *t_vector<KEY,DATA>::get_new_nexus(int)"
+          with
+          [
+              KEY=int,
+              DATA=int
+          ]
+  c:\temp\polynom\t_vector.h(49): note: при компиляции функции-члена "<Нет данных>" класса класс <Нет данных>
+  c:\temp\polynom\google_test\test.cpp(113): note: выполняется компиляция ссылки на экземпляр шаблон функции "t_vector<int,int>::~t_vector(void)"
+  c:\temp\polynom\google_test\test.cpp(113): note: выполняется компиляция ссылки на экземпляр шаблон класс "t_vector<int,int>"
+c:\temp\polynom\t_vector_sorted.h(159): warning C4101: e: неиспользованная локальная переменная
+  c:\temp\polynom\t_vector_sorted.h(153): note: при компиляции функции-члена "<Нет данных>" класса класс <Нет данных>
+  c:\temp\polynom\t_vector_sorted.h(69): note: выполняется компиляция ссылки на экземпляр шаблон функции "Nexus<KEY,DATA> *t_vector_sorted<KEY,DATA>::get_new_nexus(int)"
+          with
+          [
+              KEY=int,
+              DATA=int
+          ]
+  c:\temp\polynom\t_vector_sorted.h(49): note: при компиляции функции-члена "<Нет данных>" класса класс <Нет данных>
+  c:\temp\polynom\google_test\test.cpp(175): note: выполняется компиляция ссылки на экземпляр шаблон функции "t_vector_sorted<int,int>::~t_vector_sorted(void)"
+  c:\temp\polynom\google_test\test.cpp(175): note: выполняется компиляция ссылки на экземпляр шаблон класс "t_vector_sorted<int,int>"
+  Создание кода...
+  google_test.vcxproj -> C:\Temp\Polynom\x64\Debug\google_test.exe
