@@ -6,22 +6,27 @@
 typedef enum {
 		RED,
 		BLACK
-}Color;
+}cType;
 
 template<typename KEY, typename DATA>
 class rbtree {
 public:
 		rbtree() {}
+		rbtree(const Nexus<KEY, DATA> &obj);
+		~rbtree();
 
 		bool add(const Nexus<KEY, DATA> &obj);
+		bool exist(const KEY &key);
 		bool get(const KEY &key, Nexus<KEY, DATA> &result);
+		bool empty();
 
 		void remove(const KEY &key);
+		void clear();
 
 private:
 		struct leaf {
 				Nexus<KEY, DATA> data;
-				Color cType;
+				cType cType;
 
 				leaf *right = nullptr;
 				leaf *left = nullptr;
@@ -31,10 +36,40 @@ private:
 
 		void rotate_left(leaf *&l);
 		void rotate_right(leaf* &l);
-		void fixup(leaf* &l);
+		void addfixup(leaf* &l);
+		void removefixup(leaf* &l);
+		bool get_leaf(const KEY &key, leaf* &result);
 };
 
 //-------------PUBLIC-------------//
+
+template<typename KEY, typename DATA>
+inline rbtree<KEY, DATA>::rbtree(const Nexus<KEY, DATA>& obj){
+		add(obj);
+}
+
+template<typename KEY, typename DATA>
+inline rbtree<KEY, DATA>::~rbtree(){
+		if (head == nullptr) {
+				return;
+		}
+
+		while (head != nullptr) {
+				if (head->left != nullptr) {
+						while (head->left != nullptr) {
+								head = head->left;
+						}
+				}
+				else if (head->right != nullptr) {
+						while (head->right != nullptr) {
+								head = head->right;
+						}
+				}
+				leaf *temp = head;
+				head = head->parent;
+				delete temp;
+		}
+}
 
 template<typename KEY, typename DATA>
 inline bool rbtree<KEY, DATA>::add(const Nexus<KEY, DATA>& obj) {
@@ -73,13 +108,32 @@ inline bool rbtree<KEY, DATA>::add(const Nexus<KEY, DATA>& obj) {
 						parent->right = temp;
 				}
 		}
-		fixup(temp);
+		addfixup(temp);
 
 		return true;
 }
 
 template<typename KEY, typename DATA>
-inline bool rbtree<KEY, DATA>::get(const KEY &key, Nexus<KEY, DATA> &result) {
+inline bool rbtree<KEY, DATA>::exist(const KEY & key){
+		leaf *current = head;
+
+		while (current != nullptr) {
+				if (current->data.key == key) {
+						return true;
+				}
+				else {
+						current = key < current->data.key ? current->left : current->right;
+				}
+		}
+
+		return false;
+}
+
+template<typename KEY, typename DATA>
+inline bool rbtree<KEY, DATA>::get(const KEY &key, Nexus<KEY, DATA> &result){
+		if (head == nullptr) {
+				return false;
+		}
 		leaf *current = head;
 
 		while (current != nullptr) {
@@ -96,40 +150,92 @@ inline bool rbtree<KEY, DATA>::get(const KEY &key, Nexus<KEY, DATA> &result) {
 }
 
 template<typename KEY, typename DATA>
-inline void rbtree<KEY, DATA>::remove(const KEY & key) {
-		leaf *x, *y;
+inline bool rbtree<KEY, DATA>::empty(){
+		return head == nullptr;
+}
 
-		if (z->left == NIL || z->right == NIL) {
-				y = z;
+template<typename KEY, typename DATA>
+inline void rbtree<KEY, DATA>::remove(const KEY & key){
+		leaf *elem;
+		if (get_leaf(key, elem) == false) {
+				return;
+		}
+		if (elem == head) {
+				delete head;
+				head = nullptr;
+				return;
+		}
+
+		leaf *temp1;
+		leaf *temp2;
+
+		if (elem->left == nullptr || elem->right == nullptr) {
+				temp2 = elem;
 		}
 		else {
-				y = z->right;
-				while (y->left != NIL) y = y->left;
+				temp2 = elem->right;
+				while (temp2->left != nullptr) {
+						temp2 = temp2->left;
+				}
+		}
+		if (temp2->left != nullptr) {
+				temp1 = temp2->left;
+		}
+		else {
+				temp1 = temp2->right;
+		}
+		temp1->parent = temp2->parent;
+		if (temp2->parent) {
+				if (temp2 == temp2->parent->left) {
+						temp2->parent->left = temp1;
+				}
+				else {
+						temp2->parent->right = temp1;
+				}
+		}
+		else {
+				head = temp1;
+		}
+		if (temp2 != elem) {
+				elem->data = temp2->data;
+		}
+		if (temp2->cType == BLACK) {
+				removefixup(temp1);
 		}
 
-		/* x is y's only child */
-		if (y->left != NIL)
-				x = y->left;
-		else
-				x = y->right;
+		delete temp2;
+}
 
-		/* remove y from the parent chain */
-		x->parent = y->parent;
-		if (y->parent)
-				if (y == y->parent->left)
-						y->parent->left = x;
-				else
-						y->parent->right = x;
-		else
-				root = x;
+template<typename KEY, typename DATA>
+inline void rbtree<KEY, DATA>::clear(){
+		if (head == nullptr) {
+				return;
+		}
 
-		if (y != z) z->data = y->data;
-
-
-		if (y->color == BLACK)
-				deleteFixup(x);
-
-		free(y);
+		while (head != nullptr) {
+				if (head->left != nullptr) {
+						while (head->left != nullptr) {
+								head = head->left;
+						}
+						leaf *temp = head;
+						head = head->parent;
+						delete temp;
+						head->left = nullptr;
+				}
+				else if (head->right != nullptr) {
+						while (head->right != nullptr) {
+								head = head->right;
+						}
+						leaf *temp = head;
+						head = head->parent;
+						delete temp;
+						head->right = nullptr;
+				}
+				else if (head->parent == nullptr) {
+						delete head;
+						head = nullptr;
+				}
+		}
 }
 
 //-------------PRIVATE-------------//
@@ -191,7 +297,7 @@ inline void rbtree<KEY, DATA>::rotate_right(leaf *& l) {
 }
 
 template<typename KEY, typename DATA>
-inline void rbtree<KEY, DATA>::fixup(leaf* &l) {
+inline void rbtree<KEY, DATA>::addfixup(leaf* &l) {
 		while (l != head && l->parent->cType == RED) {
 				if (l->parent == l->parent->parent->left) {
 						leaf *temp = l->parent->parent->right;
@@ -233,11 +339,80 @@ inline void rbtree<KEY, DATA>::fixup(leaf* &l) {
 		head->cType = BLACK;
 }
 
+template<typename KEY, typename DATA>
+inline void rbtree<KEY, DATA>::removefixup(leaf *& l){
+		while (l != head && l->cType == BLACK) {
+				if (l == l->parent->left) {
+						leaf *temp = l->parent->right;
+						if (temp->cType == RED) {
+								temp->cType = BLACK;
+								l->parent->cType = RED;
+								rotate_left(l->parent);
+								temp = l->parent->right;
+						}
+						if (temp->left->cType == BLACK && temp->right->cType == BLACK) {
+								temp->cType = RED;
+								l = l->parent;
+						}
+						else {
+								if (temp->right->cType == BLACK) {
+										temp->left->cType = BLACK;
+										temp->cType = RED;
+										rotate_right(temp);
+										temp = l->parent->right;
+								}
+								temp->cType = l->parent->cType;
+								l->parent->cType = BLACK;
+								temp->right->cType = BLACK;
+								rotate_left(l->parent);
+								l = head;
+						}
+				}
+				else {
+						leaf *temp = l->parent->left;
+						if (temp->cType == RED) {
+								temp->cType = BLACK;
+								l->parent->cType = RED;
+								rotate_right(l->parent);
+								temp = l->parent->left;
+						}
+						if (temp->right->cType == BLACK && temp->left->cType == BLACK) {
+								temp->cType = RED;
+								l = l->parent;
+						}
+						else {
+								if (temp->left->cType == BLACK) {
+										temp->right->cType = BLACK;
+										temp->cType = RED;
+										rotate_left(temp);
+										temp = l->parent->left;
+								}
+								temp->cType = l->parent->cType;
+								l->parent->cType = BLACK;
+								temp->left->cType = BLACK;
+								rotate_right(l->parent);
+								l = head;
+						}
+				}
+		}
+		l->cType = BLACK;
+}
 
+template<typename KEY, typename DATA>
+inline bool rbtree<KEY, DATA>::get_leaf(const KEY & key, leaf *& result){
+		leaf *current = head;
 
+		while (current != nullptr) {
+				if (current->data.key == key) {
+						result = current;
+						return true;
+				}
+				else {
+						current = key < current->data.key ? current->left : current->right;
+				}
+		}
 
-
-
-
+		return false;
+}
 
 #endif 
