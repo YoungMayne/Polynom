@@ -18,7 +18,7 @@ public:
 		/*hash_table(const Nexus<DATA> &obj);*/
 		~hash_table() {};
 
-		void add(const Nexus2<DATA> &obj);
+		bool add(const Nexus2<DATA> &obj);
 		void remove(const std::string &key);
 		void clear();
 
@@ -43,15 +43,16 @@ inline hash_table<DATA>::hash_table()
 }
 
 template<typename DATA>
-inline void hash_table<DATA>::add(const Nexus2<DATA>& obj)
+inline bool hash_table<DATA>::add(const Nexus2<DATA>& obj)
 {
 		int k = hash_func(obj.key);
 		for (int i = 0; i < htable[k].size(); i++)
 		{
-				if (htable[k][i] == obj.key)
-						return;
+				if (htable[k][i].key == obj.key)
+						return false;
 		}
 		htable[k].push_back(obj);
+		return true;
 }
 
 template<typename DATA>
@@ -95,8 +96,10 @@ inline bool hash_table<DATA>::get(const std::string & key, Nexus2<DATA>& result)
 		int k = hash_func(key);
 		for (int i = 0; i < htable[k].size(); i++)
 		{
-				if (htable[k][i].key == key)
+				if (htable[k][i].key == key) {
+						result = htable[k][i];
 						return true;
+				}
 		}
 		return false;
 }

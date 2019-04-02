@@ -361,5 +361,5 @@ TEST(TreeTable, cant_get_data)
 		a.add(x);
 		Nexus<int, int> y;
 		EXPECT_EQ(false, a.get(1, y));
-		system("pause");
+		//system("pause");
 }

@@ -1,1 +1,83 @@
-﻿  uLab.vcxproj -> C:\Users\Павел\Desktop\polinom\Polynom\x64\Debug\uLab.exe
+﻿  main.cpp
+e:\polynom\monom.h(216): warning C4244: '*=': conversion from 'double' to 'int', possible loss of data
+e:\polynom\monom.h(219): warning C4244: '*=': conversion from 'double' to 'int', possible loss of data
+e:\polynom\monom.h(222): warning C4244: '*=': conversion from 'double' to 'int', possible loss of data
+e:\polynom\monom.h(258): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+e:\polynom\polynom.h(183): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+e:\polynom\menu.h(63): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+e:\polynom\menu.h(96): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+e:\polynom\rlist.h(65): warning C4101: 'e': unreferenced local variable
+  e:\polynom\rlist.h(59): note: while compiling class template member function 'void rlist<Polynom>::push(const Type &)'
+          with
+          [
+              Type=Polynom
+          ]
+  e:\polynom\main.cpp(160): note: see reference to function template instantiation 'void rlist<Polynom>::push(const Type &)' being compiled
+          with
+          [
+              Type=Polynom
+          ]
+  e:\polynom\main.cpp(151): note: see reference to class template instantiation 'rlist<Polynom>' being compiled
+e:\polynom\rbtree.h(91): warning C4101: 'e': unreferenced local variable
+  e:\polynom\rbtree.h(75): note: while compiling class template member function 'bool rbtree<std::string,Polynom>::add(const Nexus<KEY,DATA> &)'
+          with
+          [
+              KEY=std::string,
+              DATA=Polynom
+          ]
+  e:\polynom\main.cpp(392): note: see reference to function template instantiation 'bool rbtree<std::string,Polynom>::add(const Nexus<KEY,DATA> &)' being compiled
+          with
+          [
+              KEY=std::string,
+              DATA=Polynom
+          ]
+  e:\polynom\main.cpp(380): note: see reference to class template instantiation 'rbtree<std::string,Polynom>' being compiled
+e:\polynom\t_vector.h(142): warning C4101: 'e': unreferenced local variable
+  e:\polynom\t_vector.h(136): note: while compiling class template member function 'Nexus<KEY,DATA> *t_vector<KEY,DATA>::get_new_nexus(int)'
+          with
+          [
+              KEY=std::string,
+              DATA=Polynom
+          ]
+  e:\polynom\t_vector.h(57): note: see reference to function template instantiation 'Nexus<KEY,DATA> *t_vector<KEY,DATA>::get_new_nexus(int)' being compiled
+          with
+          [
+              KEY=std::string,
+              DATA=Polynom
+          ]
+  e:\polynom\t_vector.h(49): note: while compiling class template member function 't_vector<std::string,Polynom>::~t_vector(void)'
+  e:\polynom\main.cpp(188): note: see reference to function template instantiation 't_vector<std::string,Polynom>::~t_vector(void)' being compiled
+  e:\polynom\main.cpp(188): note: see reference to class template instantiation 't_vector<std::string,Polynom>' being compiled
+e:\polynom\t_list.h(164): warning C4101: 'e': unreferenced local variable
+  e:\polynom\t_list.h(160): note: while compiling class template member function 'void t_list<std::string,Polynom>::push_to(t_list<std::string,Polynom>::p_nexus *&,const Nexus<KEY,DATA> &)'
+          with
+          [
+              KEY=std::string,
+              DATA=Polynom
+          ]
+  e:\polynom\t_list.h(64): note: see reference to function template instantiation 'void t_list<std::string,Polynom>::push_to(t_list<std::string,Polynom>::p_nexus *&,const Nexus<KEY,DATA> &)' being compiled
+          with
+          [
+              KEY=std::string,
+              DATA=Polynom
+          ]
+  e:\polynom\t_list.h(45): note: while compiling class template member function 't_list<std::string,Polynom>::t_list(void)'
+  e:\polynom\main.cpp(252): note: see reference to function template instantiation 't_list<std::string,Polynom>::t_list(void)' being compiled
+  e:\polynom\main.cpp(252): note: see reference to class template instantiation 't_list<std::string,Polynom>' being compiled
+e:\polynom\t_vector_sorted.h(157): warning C4101: 'e': unreferenced local variable
+  e:\polynom\t_vector_sorted.h(151): note: while compiling class template member function 'Nexus<KEY,DATA> *t_vector_sorted<KEY,DATA>::get_new_nexus(int)'
+          with
+          [
+              KEY=std::string,
+              DATA=Polynom
+          ]
+  e:\polynom\t_vector_sorted.h(69): note: see reference to function template instantiation 'Nexus<KEY,DATA> *t_vector_sorted<KEY,DATA>::get_new_nexus(int)' being compiled
+          with
+          [
+              KEY=std::string,
+              DATA=Polynom
+          ]
+  e:\polynom\t_vector_sorted.h(49): note: while compiling class template member function 't_vector_sorted<std::string,Polynom>::~t_vector_sorted(void)'
+  e:\polynom\main.cpp(316): note: see reference to function template instantiation 't_vector_sorted<std::string,Polynom>::~t_vector_sorted(void)' being compiled
+  e:\polynom\main.cpp(316): note: see reference to class template instantiation 't_vector_sorted<std::string,Polynom>' being compiled
+  uLab.vcxproj -> E:\Polynom\x64\Debug\uLab.exe

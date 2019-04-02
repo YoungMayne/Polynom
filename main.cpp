@@ -376,6 +376,134 @@ void SortedArrayTable_menu() {
 		}
 }
 
+void RedBlackTree_menu() {
+		rbtree<std::string, Polynom> t;
+
+		while (true) {
+				std::string exitCode = createDefaultMenu();
+
+				system("cls");
+				std::cout << '\t' << exitCode << std::endl;
+				if (exitCode == "Add") {
+						std::string key;
+						std::cout << "Enter key: ";
+						std::getline(std::cin, key);
+						Polynom temp = getPolynomFromConsole();
+						if (t.add({ key, temp }) == true) {
+								std::cout << "Added " << temp.to_str() << std::endl;
+						}
+						else {
+								std::cout << "Polynom is already exists" << std::endl;
+						}
+				}
+				else if (exitCode == "Remove") {
+						std::string key;
+						std::cout << "Enter key: ";
+						std::getline(std::cin, key);
+
+						t.remove(key);
+						std::cout << "\n\tPolynom removed" << std::endl;
+				}
+				else if (exitCode == "Check") {
+						std::string key;
+						std::cout << "Enter key: ";
+						std::getline(std::cin, key);
+
+						if (t.exist(key) == true) {
+								std::cout << "\n\t Polynom exists" << std::endl;
+						}
+						else {
+								std::cout << "\n\t Polynom does not exist" << std::endl;
+						}
+				}
+				else if (exitCode == "Get Element") {
+						std::string key;
+						std::cout << "Enter key: ";
+						std::getline(std::cin, key);
+
+						Nexus<std::string, Polynom> temp;
+						if (t.get(key, temp) == true) {
+								std::cout << "\n\t" << temp.data.to_str() << std::endl;
+						}
+						else {
+								std::cout << "\n\t Polynom does not exist" << std::endl;
+						}
+				}
+				else if (exitCode == "Clear") {
+						t.clear();
+						std::cout << "Tree is cleared" << std::endl;
+				}
+				else if (exitCode == "NULL") {
+						return;
+				}
+				_getch();
+		}
+}
+
+void HashTable_menu() {
+		hash_table<Polynom> t;
+
+		while (true) {
+				std::string exitCode = createDefaultMenu();
+
+				system("cls");
+				std::cout << '\t' << exitCode << std::endl;
+				if (exitCode == "Add") {
+						std::string key;
+						std::cout << "Enter key: ";
+						std::getline(std::cin, key);
+						Polynom temp = getPolynomFromConsole();
+						if (t.add({ key, temp }) == true) {
+								std::cout << "Added " << temp.to_str() << std::endl;
+						}
+						else {
+								std::cout << "Polynom is already exists" << std::endl;
+						}
+				}
+				else if (exitCode == "Remove") {
+						std::string key;
+						std::cout << "Enter key: ";
+						std::getline(std::cin, key);
+
+						t.remove(key);
+						std::cout << "\n\tPolynom removed" << std::endl;
+				}
+				else if (exitCode == "Check") {
+						std::string key;
+						std::cout << "Enter key: ";
+						std::getline(std::cin, key);
+
+						if (t.exist(key) == true) {
+								std::cout << "\n\t Polynom exists" << std::endl;
+						}
+						else {
+								std::cout << "\n\t Polynom does not exist" << std::endl;
+						}
+				}
+				else if (exitCode == "Get Element") {
+						std::string key;
+						std::cout << "Enter key: ";
+						std::getline(std::cin, key);
+
+						Nexus2<Polynom> temp;
+						if (t.get(key, temp) == true) {
+								std::cout << "\n\t" << temp.data.to_str() << std::endl;
+						}
+						else {
+								std::cout << "\n\t Polynom does not exist" << std::endl;
+						}
+				}
+				else if (exitCode == "Clear") {
+						t.clear();
+						std::cout << "Table is cleared" << std::endl;
+				}
+				else if (exitCode == "NULL") {
+						return;
+				}
+				_getch();
+		}
+}
+
 void createMenu() {
 		menu m;
 
@@ -399,10 +527,10 @@ void createMenu() {
 						SortedArrayTable_menu();
 				}
 				else if (exitCode == "Tree") {
-
+						RedBlackTree_menu();
 				}
 				else if (exitCode == "Hash Table") {
-
+						HashTable_menu();
 				}
 				else if (exitCode == "NULL") {
 						return;
@@ -411,14 +539,7 @@ void createMenu() {
 }
 
 int main() {
-		//createMenu();
-
-		Polynom p("2x + 4");
-		Polynom a("4y");
-
-		std::cout << p.mult(a).div(p).to_str() << std::endl;
-
-		system("pause");
+		createMenu();
 
 		return 0;
 }

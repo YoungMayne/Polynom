@@ -27,7 +27,7 @@ TEST(Polynom, can_multiply_polynoms) {
 TEST(Polynom, can_divide_polynoms) {
 		Polynom a("x + y + z");
 		Polynom b("xy + z");
-		EXPECT_EQ(a.mult(b).div(b).to_str(), "+1x^1 +1z^1 +1y^1 ");
+		EXPECT_EQ(a.mult(b).div(b).to_str(), "+1x^1 +1y^1 +1z^1 ");
 }
 
 TEST(Polynom, can_dirvide_polynom) {
