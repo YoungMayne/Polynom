@@ -1,5 +1,16 @@
 #pragma once
 
+#ifndef _Node
+#define _Node
+
+template<typename KEY, typename DATA>
+struct Nexus {
+		KEY key;
+		DATA data;
+};
+
+#endif
+
 #ifndef _rbtree_H
 #define _rbtree_H
 
@@ -22,10 +33,12 @@ public:
 
 		void remove(const KEY &key);
 		void clear();
+
+		void print();
 private:
 		struct leaf {
 				Nexus<KEY, DATA> data;
-				cType cType;
+				cType cType = RED;
 
 				leaf *right = nullptr;
 				leaf *left = nullptr;
@@ -38,6 +51,8 @@ private:
 		void addfixup(leaf* &l);
 		void removefixup(leaf* &l);
 		bool get_leaf(const KEY &key, leaf* &result);
+
+		std::vector<KEY> keys;
 };
 
 //-------------PUBLIC-------------//
@@ -109,6 +124,7 @@ inline bool rbtree<KEY, DATA>::add(const Nexus<KEY, DATA>& obj) {
 		}
 		addfixup(temp);
 
+		keys.push_back(obj.key);
 		return true;
 }
 
@@ -202,6 +218,11 @@ inline void rbtree<KEY, DATA>::remove(const KEY & key){
 				removefixup(temp1);
 		}
 
+		for (int i = 0; i < keys.size(); ++i) {
+				if (keys[i] == key) {
+						keys.erase(keys.begin() + i);
+				}
+		}
 		delete temp2;
 }
 
@@ -234,6 +255,18 @@ inline void rbtree<KEY, DATA>::clear(){
 						delete head;
 						head = nullptr;
 				}
+		}
+		keys.clear();
+}
+
+template<typename KEY, typename DATA>
+inline void rbtree<KEY, DATA>::print(){
+		auto temp = head;
+
+		for (const auto &c : keys) {
+				Nexus<KEY, DATA> result;
+				get(c, result);
+				std::cout << c << "\t|\t" << result.data.to_str() << std::endl;
 		}
 }
 
@@ -278,7 +311,11 @@ inline void rbtree<KEY, DATA>::rotate_right(leaf *& l) {
 		if (temp != nullptr) {
 				temp->parent = l->parent;
 		}
-		if (l->parent) {
+		if (l == nullptr) {
+				l = new leaf;
+		}
+		if (l->parent == nullptr) {
+				l->parent = new leaf;
 				if (l == l->parent->right) {
 						l->parent->right = temp;
 				}
@@ -300,6 +337,9 @@ inline void rbtree<KEY, DATA>::addfixup(leaf* &l) {
 		while (l != head && l->parent->cType == RED) {
 				if (l->parent == l->parent->parent->left) {
 						leaf *temp = l->parent->parent->right;
+						if (temp == nullptr) {
+								temp = new leaf;
+						}
 						if (temp->cType == RED) {
 								l->parent->cType = BLACK;
 								l->parent->parent->cType = RED;
@@ -318,6 +358,9 @@ inline void rbtree<KEY, DATA>::addfixup(leaf* &l) {
 				}
 				else {
 						leaf *temp = l->parent->parent->left;
+						if (temp == nullptr) {
+								temp = new leaf;
+						}
 						if (temp->cType == RED) {
 								l->parent->cType = BLACK;
 								l->parent->parent->cType = RED;

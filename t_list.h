@@ -29,6 +29,7 @@ public:
 		bool get(const KEY &key, Nexus<KEY, DATA> &result);
 		bool empty();
 
+		void print();
 private:
 		struct p_nexus {
 				Nexus<KEY, DATA> data;
@@ -152,6 +153,16 @@ inline bool t_list<KEY, DATA>::get(const KEY & key, Nexus<KEY, DATA>& result) {
 template<typename KEY, typename DATA>
 inline bool t_list<KEY, DATA>::empty() {
 		return first == nullptr;
+}
+
+template<typename KEY, typename DATA>
+inline void t_list<KEY, DATA>::print(){
+		auto temp = first;
+
+		while (temp != nullptr) {
+				std::cout << temp->data.key << "\t|\t" << temp->data.data.to_str() << std::endl;
+				temp = temp->next;
+		}
 }
 
 //-------------PRIVATE-------------//

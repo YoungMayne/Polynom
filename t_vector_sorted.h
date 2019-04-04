@@ -30,6 +30,8 @@ public:
 		bool empty();
 
 		int size();
+
+		void print();
 private:
 		Nexus<KEY, DATA> *table;
 		int t_size = 0;
@@ -147,6 +149,13 @@ inline int t_vector_sorted<KEY, DATA>::size() {
 		return t_size;
 }
 
+template<typename KEY, typename DATA>
+inline void t_vector_sorted<KEY, DATA>::print(){
+		for (int i = 0; i < t_size; ++i) {
+				std::cout << table[i].key << "\t|\t" << table[i].data.to_str() << std::endl;
+		}
+}
+
 //-------------PRIVATE-------------//
 
 template<typename KEY, typename DATA>
@@ -186,12 +195,12 @@ inline int t_vector_sorted<KEY, DATA>::get_index_binary(const KEY & key, bool ex
 						}
 				}
 
-				if (left > right) {
+				if (left >= right) {
 						if (existing == true) {
 								return -1;
 						}
 						else {
-								return right;
+								return left;
 						}
 				}
 		}

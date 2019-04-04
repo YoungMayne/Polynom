@@ -31,6 +31,8 @@ public:
 		bool empty();
 
 		int size();
+
+		void print();
 private:
 		Nexus<KEY, DATA> *table = nullptr;
 		int t_size = 0;
@@ -65,8 +67,10 @@ bool t_vector<KEY, DATA>::add(const Nexus<KEY, DATA> &obj) {
 						temp[i] = table[i];
 				}
 		}
+		if (t_size > 0) {
+				delete[] table;
+		}
 		temp[t_size] = obj;
-		delete[] table;
 		table = temp;
 		t_size += 1;
 
@@ -128,6 +132,13 @@ bool t_vector<KEY, DATA>::empty() {
 template<typename KEY, typename DATA>
 int t_vector<KEY, DATA>::size() {
 		return t_size;
+}
+
+template<typename KEY, typename DATA>
+inline void t_vector<KEY, DATA>::print(){
+		for (int i = 0; i < t_size; ++i) {
+				std::cout << table[i].key << "\t|\t" << table[i].data.to_str() << std::endl;
+		}
 }
 
 //-------------PRIVATE-------------//
