@@ -73,15 +73,28 @@ inline rbtree<KEY, DATA>::~rbtree(){
 						while (head->left != nullptr) {
 								head = head->left;
 						}
+						leaf *temp = head;
+						head = head->parent;
+						delete temp;
+						head->left = nullptr;
 				}
 				else if (head->right != nullptr) {
 						while (head->right != nullptr) {
 								head = head->right;
 						}
+						leaf *temp = head;
+						head = head->parent;
+						delete temp;
+						head->right = nullptr;
 				}
-				leaf *temp = head;
-				head = head->parent;
-				delete temp;
+				else if (head->parent == nullptr) {
+						delete head;
+						head = nullptr;
+				}
+				else {
+						delete head;
+						head = nullptr;
+				}
 		}
 }
 
@@ -252,6 +265,10 @@ inline void rbtree<KEY, DATA>::clear(){
 						head->right = nullptr;
 				}
 				else if (head->parent == nullptr) {
+						delete head;
+						head = nullptr;
+				}
+				else {
 						delete head;
 						head = nullptr;
 				}
