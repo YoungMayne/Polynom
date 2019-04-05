@@ -4,6 +4,7 @@
 #include "rbtree.h"
 #include "t_vector.h"
 #include "t_vector_sorted.h"
+#include "t_hash2.h"
 #include "t_hash.h"
 
 #include <algorithm>
@@ -13,6 +14,8 @@ t_list<std::string, Polynom> table_list;
 rbtree<std::string, Polynom> tree;
 t_vector<std::string, Polynom> vector;
 t_vector_sorted<std::string, Polynom> vector_sorted;
+hash_table<Polynom> hashtable;
+hash_table2<Polynom> hashtable2;
 
 std::vector<std::string> getwordsfromstr(std::string str) {
 		std::vector<std::string> words;
@@ -43,6 +46,8 @@ void clear_all() {
 		tree.clear();
 		vector.clear();
 		vector_sorted.clear();
+		hashtable.clear();
+		hashtable2.clear();
 		std::cout << "\tCleared successfuly" << std::endl;
 }
 
@@ -68,12 +73,18 @@ void remove(const std::string &key) {
 		if (tree.empty() == false) {
 				tree.remove(key);
 		}
+		if (hashtable.empty() == false) {
+			hashtable.remove(key);
+		}
+		if (hashtable2.empty() == false) {
+			hashtable2.remove(key);
+		}
 
 		std::cout << "\tRemoved successfuly" << std::endl;
 }
 
 void print_all() {
-		if (vector.empty() == true && vector_sorted.empty() == true && table_list.empty() == true && tree.empty() == true) {
+		if (vector.empty() == true && vector_sorted.empty() == true && table_list.empty() == true && tree.empty() == true && hashtable.empty() == true && hashtable2.empty() == true) {
 				std::cout << "\tTables are empty" << std::endl;
 		}
 		else {
@@ -85,6 +96,10 @@ void print_all() {
 				table_list.print();
 				std::cout << "\tTree" << std::endl;
 				tree.print();
+				std::cout << "\tHashTable" << std::endl;
+				hashtable.print();
+				std::cout << "\tHashTable2" << std::endl;
+				hashtable2.print();
 		}
 }
 

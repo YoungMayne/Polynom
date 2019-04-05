@@ -16,7 +16,7 @@ class hash_table {
 public:
 		hash_table();
 		/*hash_table(const Nexus<DATA> &obj);*/
-		~hash_table() {};
+		~hash_table();
 
 		bool add(const Nexus2<DATA> &obj);
 		void remove(const std::string &key);
@@ -27,101 +27,167 @@ public:
 		bool empty();
 
 		int size();
+		void print();
 private:
-		std::vector<std::vector<Nexus2<DATA>>> htable;
+	struct Node
+	{
+		Nexus2<DATA> data;
+		Node *next = nullptr;
+	};
+	Node *htable[10];
+		std::vector<std::vector<Nexus2<DATA>>> htable2;
 		int hash_func(std::string _key) { return _key.size() % 10; };
 };
 
 template<typename DATA>
-inline hash_table<DATA>::hash_table()
+inline hash_table<DATA>::hash_table()//
 {
-		htable.resize(10);
-		for (int i = 0; i < htable.size(); i++)
-		{
-				htable[i] = {};
-		}
+	for (int i = 0; i < 10; i++)
+	{
+		htable[i] = nullptr;
+	}
 }
 
 template<typename DATA>
-inline bool hash_table<DATA>::add(const Nexus2<DATA>& obj)
+inline hash_table<DATA>::~hash_table()
 {
-		int k = hash_func(obj.key);
-		for (int i = 0; i < htable[k].size(); i++)
+	for (int i = 0; i < 10; i++)
+	{
+		while (htable[i] != nullptr)
 		{
-				if (htable[k][i].key == obj.key)
-						return false;
+			Node *tmp = htable[i];
+			htable[i] = htable[i]->next;
+			delete tmp;
 		}
-		htable[k].push_back(obj);
-		return true;
+	}
 }
 
 template<typename DATA>
-inline void hash_table<DATA>::remove(const std::string & key)
+inline bool hash_table<DATA>::add(const Nexus2<DATA>& obj)//
 {
-		int k = hash_func(key);
-		for (int i = 0; i < htable[k].size(); i++)
+	int k = hash_func(obj.key);
+	Node *tmp = new Node;
+	tmp->data.key = obj.key;
+	tmp->data.data = obj.data;
+		if (htable[k] == nullptr)
 		{
-				if (htable[k][i].key == key)
-				{
-						htable[k].erase(htable[k].begin() + i);
-						return;
-				}
+			htable[k] = tmp;
+			return true;
 		}
+	Node *tmp1 = htable[k];
+	while (tmp1 != nullptr)
+	{
+		tmp1 = tmp1->next;
+	}
+	tmp1 = tmp;
+	return true;
 }
 
 template<typename DATA>
-inline void hash_table<DATA>::clear()
+inline void hash_table<DATA>::remove(const std::string & key)//
 {
-		for (int i = 0; i < htable.size(); i++)
-		{
-				htable[i].clear();
-		}
+	int k = hash_func(key);
+	if (htable[k] == nullptr)
+		return;
+	Node *tmp = htable[k];
+	Node *tmp1 = tmp->next;
+	while ((tmp1 != nullptr) && (tmp1->data.key != key))
+	{
+		tmp = tmp->next;
+		tmp1 = tmp1->next;
+	}
+	if (tmp1 == nullptr)
+		return;
+	else
+	{
+		tmp->next = tmp1->next;
+		delete tmp1;
+		return;
+	}
 }
 
 template<typename DATA>
-inline bool hash_table<DATA>::exist(const std::string & key)
+inline void hash_table<DATA>::clear()//
 {
-		int k = hash_func(key);
-		for (int i = 0; i < htable[k].size(); i++)
+	for (int i = 0; i < 10; i++)
+	{
+		while (htable[i] != nullptr)
 		{
-				if (htable[k][i].key == key)
-						return true;
+			Node *tmp = htable[i];
+			htable[i] = htable[i]->next;
+			delete tmp;
 		}
-		return false;
+	}
 }
 
 template<typename DATA>
-inline bool hash_table<DATA>::get(const std::string & key, Nexus2<DATA>& result)
+inline bool hash_table<DATA>::exist(const std::string & key)//
 {
-		int k = hash_func(key);
-		for (int i = 0; i < htable[k].size(); i++)
-		{
-				if (htable[k][i].key == key) {
-						result = htable[k][i];
-						return true;
-				}
-		}
-		return false;
+	int k = hash_func(key);
+	Node *tmp = htable[k];
+	while (tmp != nullptr)
+	{
+		if (tmp->data.key == key)
+			return true;
+		tmp = tmp->next;
+	}
+	return false;
 }
 
 template<typename DATA>
-inline bool hash_table<DATA>::empty()
+inline bool hash_table<DATA>::get(const std::string & key, Nexus2<DATA>& result)//
 {
-		for (int i = 0; i < htable.size(); i++)
+	int k = hash_func(key);
+	Node *tmp = htable[k];
+	while (tmp != nullptr)
+	{
+		if (tmp->data.key == key)
 		{
-				if (!(htable[i].empty()))
-						return false;
+			result = tmp->data;
+			return true;
 		}
-		return true;
+		tmp = tmp->next;
+	}
+	return false;
 }
 
 template<typename DATA>
-inline int hash_table<DATA>::size()
+inline bool hash_table<DATA>::empty()//
 {
-		int count = 0;
-		for (int i = 0; i < htable.size(); i++)
+	for (int i = 0; i < 10; i++)
+	{
+		if (htable[i] != nullptr)
+			return false;
+	}
+	return true;
+}
+
+template<typename DATA>
+inline int hash_table<DATA>::size()//
+{
+	int count = 0;
+	for (int i = 0; i < 10; i++)
+	{
+		Node *tmp = htable[i];
+		while (tmp != nullptr)
 		{
-				count += htable[i].size();
+			count++;
+			tmp = tmp->next;
 		}
-		return count;
+	}
+	return count;
+}
+
+template<typename DATA>
+inline void hash_table<DATA>::print()
+{
+	for (int i = 0; i < 10; i++)
+	{
+		Node *tmp = htable[i];
+		while (tmp != nullptr)
+		{
+			std::cout << tmp->data.key << "\t|\t" << tmp->data.data.to_str() << std::endl;
+			tmp = tmp->next;
+		}
+	}
 }

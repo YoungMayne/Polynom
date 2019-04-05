@@ -4,6 +4,7 @@
 #include "../t_vector.h"
 #include "../t_vector_sorted.h"
 #include "../t_hash.h"
+#include "../t_hash2.h"
 #include "../rbtree.h"
 
 //TEST(RingList, TestName) {
@@ -296,6 +297,73 @@ TEST(HashTable, exist)
 		x.data = 1; x.key = "1";
 		a.add(x);
 		EXPECT_EQ(true, a.exist("1"));
+}
+
+
+
+TEST(HashTable2, can_create_table) {
+	ASSERT_NO_THROW(hash_table2<int> a);
+}
+
+TEST(HashTable2, can_add_data)
+{
+	hash_table2<int> a;
+	Nexus3<int> x;
+	x.data = 1; x.key = "1";
+	ASSERT_NO_THROW(a.add(x));
+}
+
+TEST(HashTable2, can_check_empty)
+{
+	hash_table2<int> a;
+	EXPECT_EQ(true, a.empty());
+}
+
+TEST(HashTable2, can_remove_data)
+{
+	hash_table2<int> a;
+	Nexus3<int> x;
+	x.data = 1; x.key = "1";
+	ASSERT_NO_THROW(a.remove("1"));
+}
+
+TEST(HashTable2, can_clear_table)
+{
+	hash_table2<int> a;
+	Nexus3<int> x;
+	x.data = 1; x.key = "1";
+	a.add(x);
+	ASSERT_NO_THROW(a.clear());
+}
+
+TEST(HashTable2, can_get_data)
+{
+	hash_table2<int> a;
+	Nexus3<int> x;
+	x.data = 1; x.key = "1";
+	a.add(x);
+	Nexus3<int> y;
+	a.get("1", y);
+	EXPECT_EQ(x.data, y.data);
+}
+
+TEST(HashTable2, cant_get_data)
+{
+	hash_table2<int> a;
+	Nexus3<int> x;
+	x.data = 1; x.key = "1";
+	a.add(x);
+	Nexus3<int> y;
+	EXPECT_EQ(false, a.get("2", y));
+}
+
+TEST(HashTable2, exist)
+{
+	hash_table2<int> a;
+	Nexus3<int> x;
+	x.data = 1; x.key = "1";
+	a.add(x);
+	EXPECT_EQ(true, a.exist("1"));
 }
 
 

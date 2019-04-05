@@ -1,1 +1,47 @@
-﻿  uLab.vcxproj -> E:\Polynom\x64\Debug\uLab.exe
+﻿  main.cpp
+c:\users\павел\desktop\poldsa\polynom\monom.h(282): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
+c:\users\павел\desktop\poldsa\polynom\polynom.h(214): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
+c:\users\павел\desktop\poldsa\polynom\main.cpp(24): warning C4267: =: преобразование из "size_t" в "int"; возможна потеря данных
+c:\users\павел\desktop\poldsa\polynom\rbtree.h(118): warning C4101: e: неиспользованная локальная переменная
+  c:\users\павел\desktop\poldsa\polynom\rbtree.h(102): note: при компиляции функции-члена "<Нет данных>" класса класс <Нет данных>
+  c:\users\павел\desktop\poldsa\polynom\main.cpp(55): note: выполняется компиляция ссылки на экземпляр шаблон функции "bool rbtree<std::string,Polynom>::add(const Nexus<KEY,DATA> &)"
+          with
+          [
+              KEY=std::string,
+              DATA=Polynom
+          ]
+  c:\users\павел\desktop\poldsa\polynom\main.cpp(14): note: выполняется компиляция ссылки на экземпляр шаблон класс "rbtree<std::string,Polynom>"
+c:\users\павел\desktop\poldsa\polynom\t_list.h(175): warning C4101: e: неиспользованная локальная переменная
+  c:\users\павел\desktop\poldsa\polynom\t_list.h(171): note: при компиляции функции-члена "<Нет данных>" класса класс <Нет данных>
+  c:\users\павел\desktop\poldsa\polynom\t_list.h(65): note: выполняется компиляция ссылки на экземпляр шаблон функции "void t_list<std::string,Polynom>::push_to(t_list<std::string,Polynom>::p_nexus *&,const Nexus<KEY,DATA> &)"
+          with
+          [
+              KEY=std::string,
+              DATA=Polynom
+          ]
+  c:\users\павел\desktop\poldsa\polynom\t_list.h(46): note: при компиляции функции-члена "<Нет данных>" класса класс <Нет данных>
+  c:\users\павел\desktop\poldsa\polynom\main.cpp(13): note: выполняется компиляция ссылки на экземпляр шаблон функции "t_list<std::string,Polynom>::t_list(void)"
+  c:\users\павел\desktop\poldsa\polynom\main.cpp(13): note: выполняется компиляция ссылки на экземпляр шаблон класс "t_list<std::string,Polynom>"
+c:\users\павел\desktop\poldsa\polynom\t_vector.h(153): warning C4101: e: неиспользованная локальная переменная
+  c:\users\павел\desktop\poldsa\polynom\t_vector.h(147): note: при компиляции функции-члена "<Нет данных>" класса класс <Нет данных>
+  c:\users\павел\desktop\poldsa\polynom\t_vector.h(59): note: выполняется компиляция ссылки на экземпляр шаблон функции "Nexus<KEY,DATA> *t_vector<KEY,DATA>::get_new_nexus(int)"
+          with
+          [
+              KEY=std::string,
+              DATA=Polynom
+          ]
+  c:\users\павел\desktop\poldsa\polynom\t_vector.h(51): note: при компиляции функции-члена "<Нет данных>" класса класс <Нет данных>
+  c:\users\павел\desktop\poldsa\polynom\main.cpp(15): note: выполняется компиляция ссылки на экземпляр шаблон функции "t_vector<std::string,Polynom>::~t_vector(void)"
+  c:\users\павел\desktop\poldsa\polynom\main.cpp(15): note: выполняется компиляция ссылки на экземпляр шаблон класс "t_vector<std::string,Polynom>"
+c:\users\павел\desktop\poldsa\polynom\t_vector_sorted.h(168): warning C4101: e: неиспользованная локальная переменная
+  c:\users\павел\desktop\poldsa\polynom\t_vector_sorted.h(162): note: при компиляции функции-члена "<Нет данных>" класса класс <Нет данных>
+  c:\users\павел\desktop\poldsa\polynom\t_vector_sorted.h(71): note: выполняется компиляция ссылки на экземпляр шаблон функции "Nexus<KEY,DATA> *t_vector_sorted<KEY,DATA>::get_new_nexus(int)"
+          with
+          [
+              KEY=std::string,
+              DATA=Polynom
+          ]
+  c:\users\павел\desktop\poldsa\polynom\t_vector_sorted.h(51): note: при компиляции функции-члена "<Нет данных>" класса класс <Нет данных>
+  c:\users\павел\desktop\poldsa\polynom\main.cpp(16): note: выполняется компиляция ссылки на экземпляр шаблон функции "t_vector_sorted<std::string,Polynom>::~t_vector_sorted(void)"
+  c:\users\павел\desktop\poldsa\polynom\main.cpp(16): note: выполняется компиляция ссылки на экземпляр шаблон класс "t_vector_sorted<std::string,Polynom>"
+  uLab.vcxproj -> C:\Users\Павел\Desktop\Poldsa\Polynom\x64\Debug\uLab.exe
