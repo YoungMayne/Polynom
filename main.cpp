@@ -23,11 +23,17 @@ std::vector<std::string> getwordsfromstr(std::string str) {
 						break;
 				}
 				else {
-						words.push_back(str.substr(0, pos));
+						auto temp = str.substr(0, pos);
+						if (temp != "") {
+								words.push_back(temp);
+						}
 						str.erase(0, pos + 1);
 				}
 		}
 		words.push_back(str);
+		if (words.back() == "") {
+				words.erase(words.end() - 1);
+		}
 
 		return words;
 }
@@ -64,44 +70,6 @@ void remove(const std::string &key) {
 		}
 
 		std::cout << "\tRemoved successfuly" << std::endl;
-}
-
-bool get_polynom_from_console(Nexus<std::string, Polynom> &result) {
-		std::string polynom;
-		std::cout << "\tEnter polynom: 'name' 'polynom'" << std::endl;;
-		std::getline(std::cin, polynom);
-		if (polynom.empty() == true) {
-				return false;
-		}
-
-		int index = 0;
-		std::string temp;
-		for (; polynom[index] != ' ' && index < polynom.size(); ++index) {
-				temp += polynom[index];
-		}
-
-		if (temp.empty() == true) {
-				return false;
-		}
-		else {
-				result.key = temp;
-				temp.clear();
-		}
-
-		for (; index < polynom.size(); ++index) {
-				if (polynom[index] != ' ') {
-						temp += polynom[index];
-				}
-		}
-
-		if (temp.empty() == true) {
-				return false;
-		}
-		else {
-				result.data = temp;
-		}
-
-		return true;
 }
 
 void print_all() {
@@ -294,7 +262,6 @@ void parsing() {
 				command = getwordsfromstr(temp);
 		}
 }
-
 
 int main() {
 		parsing();
