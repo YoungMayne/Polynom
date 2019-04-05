@@ -42,7 +42,7 @@ void clear_all() {
 
 void add(const Nexus<std::string, Polynom> &pol) {
 		if (table_list.add(pol) == false || tree.add(pol) == false || vector.add(pol) == false || vector_sorted.add(pol) == false) {
-				std::cout << "\tTables are already have this name" << std::endl;
+				std::cout << "\tTables already have this name" << std::endl;
 		}
 		else {
 				std::cout << "\tAdded successfuly" << std::endl;

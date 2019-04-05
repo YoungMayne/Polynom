@@ -1,6 +1,6 @@
 ﻿  main.cpp
 e:\polynom\monom.h(282): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-e:\polynom\polynom.h(213): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+e:\polynom\polynom.h(214): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
 e:\polynom\main.cpp(21): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
 e:\polynom\rbtree.h(118): warning C4101: 'e': unreferenced local variable
   e:\polynom\rbtree.h(102): note: while compiling class template member function 'bool rbtree<std::string,Polynom>::add(const Nexus<KEY,DATA> &)'
