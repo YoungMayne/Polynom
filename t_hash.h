@@ -75,11 +75,11 @@ inline bool hash_table<DATA>::add(const Nexus2<DATA>& obj)//
 				return true;
 		}
 		Node *tmp1 = htable[k];
-		while (tmp1 != nullptr)
+		while (tmp1->next != nullptr)
 		{
 				tmp1 = tmp1->next;
 		}
-		tmp1 = tmp;
+		tmp1->next = tmp;
 		return true;
 }
 
@@ -89,6 +89,13 @@ inline void hash_table<DATA>::remove(const std::string & key)//
 		int k = hash_func(key);
 		if (htable[k] == nullptr)
 				return;
+		if (htable[k]->data.key == key)
+		{
+			Node *tmp = htable[k];
+			htable[k] = htable[k]->next;
+			delete tmp;
+			return;
+		}
 		Node *tmp = htable[k];
 		Node *tmp1 = tmp->next;
 		while ((tmp1 != nullptr) && (tmp1->data.key != key))
