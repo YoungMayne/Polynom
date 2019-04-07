@@ -185,13 +185,14 @@ inline bool rbtree<KEY, DATA>::empty(){
 template<typename KEY, typename DATA>
 inline void rbtree<KEY, DATA>::remove(const KEY & key){
 		leaf *elem;
+
 		if (get_leaf(key, elem) == false) {
 				return;
 		}
-		if (elem == head) {
-				delete head;
-				head = nullptr;
-				return;
+		for (int i = 0; i < keys.size(); ++i) {
+				if (keys[i] == key) {
+						keys.erase(keys.begin() + i);
+				}
 		}
 
 		leaf *temp1;
@@ -211,6 +212,9 @@ inline void rbtree<KEY, DATA>::remove(const KEY & key){
 		}
 		else {
 				temp1 = temp2->right;
+				if (temp1 == nullptr) {
+						temp1 = new leaf;
+				}
 		}
 		temp1->parent = temp2->parent;
 		if (temp2->parent) {
@@ -231,11 +235,6 @@ inline void rbtree<KEY, DATA>::remove(const KEY & key){
 				removefixup(temp1);
 		}
 
-		for (int i = 0; i < keys.size(); ++i) {
-				if (keys[i] == key) {
-						keys.erase(keys.begin() + i);
-				}
-		}
 		delete temp2;
 }
 

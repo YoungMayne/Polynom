@@ -3,8 +3,6 @@
 #include <iostream>
 #include <vector>
 
-
-
 template<typename DATA>
 struct Nexus2 {
 		std::string key;
@@ -27,6 +25,10 @@ public:
 		bool empty();
 
 		int size();
+<<<<<<< HEAD
+
+=======
+>>>>>>> d5110f4ae81c3939e8fddcfc0408e8bf33715c5c
 		void print();
 private:
 	struct Node
@@ -189,5 +191,18 @@ inline void hash_table<DATA>::print()
 			std::cout << tmp->data.key << "\t|\t" << tmp->data.data.to_str() << std::endl;
 			tmp = tmp->next;
 		}
+<<<<<<< HEAD
+		return count;
+}
+
+template<typename DATA>
+inline void hash_table<DATA>::print(){
+		for (const auto &v : htable) {
+				for (auto p : v) {
+						std::cout << p.key << "\t|\t" << p.data.to_str() << std::endl;
+				}
+		}
+=======
 	}
+>>>>>>> d5110f4ae81c3939e8fddcfc0408e8bf33715c5c
 }

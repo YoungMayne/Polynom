@@ -6,23 +6,160 @@
 #include "t_vector_sorted.h"
 #include "t_hash2.h"
 #include "t_hash.h"
+#include "t_hash2.h"
 
 #include <algorithm>
 #include <string>
+#include <stack>
+#include <locale>
 
 t_list<std::string, Polynom> table_list;
 rbtree<std::string, Polynom> tree;
 t_vector<std::string, Polynom> vector;
 t_vector_sorted<std::string, Polynom> vector_sorted;
+<<<<<<< HEAD
+hash_table<Polynom> hash;
+hash_table2<Polynom> hash2;
+
+int prec(char c) {
+		if (c == '*' || c == '/')
+				return 2;
+		else if (c == '+' || c == '-')
+				return 1;
+		else
+				return -1;
+}
+
+auto pop(std::stack<char> &from) {
+		auto result = from.top();
+		from.pop();
+		return result;
+}
+
+std::string get_postfix(std::string s) {
+		std::stack<char> stack;
+		stack.push('!');
+		std::string postfix;
+
+		auto split = [&postfix]() {
+				if (postfix.empty() == false && postfix.back() != '_') {
+						postfix.push_back('_');
+				}
+		};
+
+		for (int i = 0; i < s.length(); i++) {
+				if (s[i] == ' ') {
+						continue;
+				}
+				if (isalpha(s[i]) || isdigit(s[i])) {
+						postfix += s[i];
+				}
+				else if (s[i] == '(') {
+						stack.push('(');
+				}
+				else if (s[i] == ')') {
+						while (stack.top() != '!' && stack.top() != '(') {
+								split();
+								postfix += pop(stack);
+								split();
+						}
+						if (stack.top() == '(') {
+								stack.pop();
+						}
+				}
+				else {
+						while (stack.top() != '!' && prec(s[i]) <= prec(stack.top())) {
+								split();
+								postfix += pop(stack);
+								split();
+						}
+						stack.push(s[i]);
+						split();
+				}
+
+		}
+		while (stack.top() != '!') {
+				split();
+				postfix += pop(stack);
+				split();
+		}
+
+		return postfix;
+}
+
+void add(const Nexus<std::string, Polynom> &pol) {
+		if (table_list.add(pol) == false || tree.add(pol) == false || vector.add(pol) == false || vector_sorted.add(pol) == false || hash.add({pol.key, pol.data}) == false || hash2.add({ pol.key, pol.data }) == false) {
+				std::cout << "\tTables already have this name" << std::endl;
+		}
+		else {
+				std::cout << "\tAdded successfuly" << std::endl;
+		}
+}
+
+void calculate(const std::string &postfix) {
+		std::string name;
+		std::stack<Polynom> stack;
+
+		for (const auto &c : postfix) {
+				if (c >= 'a' && c <= 'z') {
+						name += c;
+				}
+				else if (c == '_' && name.empty() == false) {
+						Nexus<std::string, Polynom> result;
+						if (vector.get(name, result) == true) {
+								stack.push(result.data);
+						}
+						else {
+								std::cout << "incorrect name" << std::endl;
+								return;
+						}
+						name.clear();
+				}
+				else if (c == '+' || c == '-' || c == '*' || c == '/') {
+						Polynom p1 = stack.top();
+						stack.pop();
+						Polynom p2 = stack.top();
+						stack.pop();
+
+						switch (c) {
+						case '+': stack.push(p2.add(p1));
+								break;
+						case '-': stack.push(p2.sub(p1));
+								break;
+						case '*': stack.push(p2.mult(p1));
+								break;
+						case '/': stack.push(p2.div(p1));
+								break;
+						}
+				}
+				else if (c != '_') {
+						name.push_back(c);
+				}
+		}
+
+		std::cout << '\t' << stack.top().to_str() << std::endl;
+
+		std::cout << "Save?(name / no)" << std::endl;
+		std::string temp;
+		std::getline(std::cin, temp);
+		if (temp == "no") {
+				return;
+		}
+		else {
+				add({ temp, stack.top() });
+		}
+}
+=======
 hash_table<Polynom> hashtable;
 hash_table2<Polynom> hashtable2;
+>>>>>>> d5110f4ae81c3939e8fddcfc0408e8bf33715c5c
 
 std::vector<std::string> getwordsfromstr(std::string str) {
 		std::vector<std::string> words;
 		int pos = 0;
 
 		while ((pos = str.find(" ")) != std::string::npos) {
-				if (words.size() == 2 && words.front() == "add") {
+				if ((words.size() == 2 && words.front() == "add") || (words.size() == 1 && words.front() == "calculate")) {
 						break;
 				}
 				else {
@@ -46,18 +183,14 @@ void clear_all() {
 		tree.clear();
 		vector.clear();
 		vector_sorted.clear();
+<<<<<<< HEAD
+		hash.clear();
+		hash2.clear();
+=======
 		hashtable.clear();
 		hashtable2.clear();
+>>>>>>> d5110f4ae81c3939e8fddcfc0408e8bf33715c5c
 		std::cout << "\tCleared successfuly" << std::endl;
-}
-
-void add(const Nexus<std::string, Polynom> &pol) {
-		if (table_list.add(pol) == false || tree.add(pol) == false || vector.add(pol) == false || vector_sorted.add(pol) == false) {
-				std::cout << "\tTables already have this name" << std::endl;
-		}
-		else {
-				std::cout << "\tAdded successfuly" << std::endl;
-		}
 }
 
 void remove(const std::string &key) {
@@ -73,11 +206,19 @@ void remove(const std::string &key) {
 		if (tree.empty() == false) {
 				tree.remove(key);
 		}
+<<<<<<< HEAD
+		if (hash.empty() == false) {
+				hash.remove(key);
+		}
+		if (hash2.empty() == false) {
+				hash2.remove(key);
+=======
 		if (hashtable.empty() == false) {
 			hashtable.remove(key);
 		}
 		if (hashtable2.empty() == false) {
 			hashtable2.remove(key);
+>>>>>>> d5110f4ae81c3939e8fddcfc0408e8bf33715c5c
 		}
 
 		std::cout << "\tRemoved successfuly" << std::endl;
@@ -96,10 +237,17 @@ void print_all() {
 				table_list.print();
 				std::cout << "\tTree" << std::endl;
 				tree.print();
+<<<<<<< HEAD
+				std::cout << "\tHash table" << std::endl;
+				hash.print();
+				std::cout << "\tHash table 2" << std::endl;
+				hash2.print();
+=======
 				std::cout << "\tHashTable" << std::endl;
 				hashtable.print();
 				std::cout << "\tHashTable2" << std::endl;
 				hashtable2.print();
+>>>>>>> d5110f4ae81c3939e8fddcfc0408e8bf33715c5c
 		}
 }
 
@@ -117,12 +265,7 @@ void parsing() {
 								std::cout << "-print\t\t                -print all tables" << std::endl;
 								std::cout << "-clear all\t\t        -fully clear all tables" << std::endl;
 								std::cout << std::endl;
-								std::cout << "'name' - 'name' 'new name'\t-sub polynoms and add new to all tables" << std::endl;
-								std::cout << "'name' * 'name' 'new name'\t-mult polynoms and add new to all tables" << std::endl;
-								std::cout << "'name' / 'name' 'new name'\t-div polynoms and add new to all tables" << std::endl;
-								std::cout << "'name' % 'name' 'new name'\t-mod polynoms and add new to all tables" << std::endl;
-								std::cout << "'name' dx/dy/dz 'new name'\t-derivide polynom and add new to all tables" << std::endl;
-								std::cout << "'name' Ix/Iy/Iz 'new name'\t-integrate polynom and add new to all tables" << std::endl;
+								std::cout << "-calculate 'expression'\t        -calculate expression" << std::endl;
 								std::cout << std::endl;
 								std::cout << "-cls\t\t                -clear console" << std::endl;
 								std::cout << "-exit\t\t                -close programm" << std::endl;
@@ -153,6 +296,9 @@ void parsing() {
 								else {
 										std::cout << "\tPolynom with such name does not exist" << std::endl;
 								}
+						}
+						else if (command.front() == "calculate") {
+								calculate(get_postfix(command.back()));
 						}
 						else if (command.front() == "clear" && command.back() == "all") {
 								clear_all();
