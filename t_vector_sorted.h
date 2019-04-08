@@ -30,6 +30,8 @@ public:
 		bool empty();
 
 		int size();
+
+		void print();
 private:
 		Nexus<KEY, DATA> *table;
 		int t_size = 0;
@@ -57,26 +59,28 @@ inline bool t_vector_sorted<KEY, DATA>::add(const Nexus<KEY, DATA>& obj) {
 		int index;
 
 		if (t_size == 0) {
-				index = 0;
+				table = get_new_nexus(1);
+				index = 0;				
 		}
 		else {
 				index = get_index_binary(obj.key, false);
 				if (index == -1) {
 						return false;
 				}
-		}
+				else {
+						Nexus<KEY, DATA> *temp = get_new_nexus(t_size + 1);
 
-		Nexus<KEY, DATA> *temp = get_new_nexus(t_size + 1);
-		for (int i = 0; i < index; ++i) {
-				temp[i] = table[i];
+						for (int i = 0; i < index; ++i) {
+								temp[i] = table[i];
+						}
+						for (int i = index; i < t_size; ++i) {
+								temp[i + 1] = table[i];
+						}
+
+						delete[] table;
+						table = temp;
+				}
 		}
-		for (int i = index; i < t_size; ++i) {
-				temp[i + 1] = table[i];
-		}
-		if (t_size > 0) {
-				delete[] table;
-		}
-		table = temp;
 		table[index] = obj;
 		t_size += 1;
 
@@ -90,25 +94,27 @@ inline void t_vector_sorted<KEY, DATA>::remove(const KEY & key) {
 		if (index == -1) {
 				return;
 		}
+		else {
+				Nexus<KEY, DATA> *temp = get_new_nexus(t_size - 1);
+				for (int i = 0; i < index; ++i) {
+						temp[i] = table[i];
+				}
+				for (int i = index + 1; i < t_size; ++i) {
+						temp[i - 1] = table[i];
+				}
 
-		Nexus<KEY, DATA> *temp = get_new_nexus(t_size - 1);
-		for (int i = 0; i < index; ++i) {
-				temp[i] = table[i];
+				delete[] table;
+				table = temp;
+				t_size -= 1;
 		}
-		for (int i = index + 1; i < t_size; ++i) {
-				temp[i - 1] = table[i];
-		}
-		delete[] table;
-		table = temp;
-		t_size -= 1;
 }
 
 template<typename KEY, typename DATA>
 inline void t_vector_sorted<KEY, DATA>::clear() {
 		if (t_size > 0) {
 				delete[] table;
+				t_size = 0;
 		}
-		t_size = 0;
 }
 
 template<typename KEY, typename DATA>
@@ -147,6 +153,13 @@ inline int t_vector_sorted<KEY, DATA>::size() {
 		return t_size;
 }
 
+template<typename KEY, typename DATA>
+inline void t_vector_sorted<KEY, DATA>::print() {
+		for (int i = 0; i < t_size; ++i) {
+				std::cout << table[i].key << "\t|\t" << table[i].data.to_str() << std::endl;
+		}
+}
+
 //-------------PRIVATE-------------//
 
 template<typename KEY, typename DATA>
@@ -166,7 +179,7 @@ inline Nexus<KEY, DATA>* t_vector_sorted<KEY, DATA>::get_new_nexus(int size) {
 template<typename KEY, typename DATA>
 inline int t_vector_sorted<KEY, DATA>::get_index_binary(const KEY & key, bool existing) {
 		int left = 0;
-		int right = t_size;
+		int right = t_size - 1;
 
 		while (true) {
 				int mid = (left + right) / 2;
@@ -191,7 +204,7 @@ inline int t_vector_sorted<KEY, DATA>::get_index_binary(const KEY & key, bool ex
 								return -1;
 						}
 						else {
-								return right;
+								return left;
 						}
 				}
 		}

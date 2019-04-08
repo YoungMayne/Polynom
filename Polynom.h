@@ -26,6 +26,7 @@ private:
 		std::vector<Monom> mons;
 
 		bool greater_than(Polynom &other);
+		bool find_index(const Polynom &other, int &index, int &other_index);
 
 		Polynom& simpify();
 };
@@ -84,24 +85,17 @@ inline Polynom Polynom::div(Polynom & other) {
 		Polynom current = *this;
 		Polynom result;
 
-		while (current.greater_than(other) && current.mons.size() >= other.mons.size()) {
+		while (current.greater_than(other)) {
 				int index = -1;
 				int other_index = 0;
 
-				for (int i = 0; i < other.mons.size(); ++i) {
-						for (int j = 0; j < current.mons.size(); ++j) {
-								if (current.mons[j].contains(other.mons[i]) == true) {
-										index = j;
-										other_index = i;
-										break;
-								}
-						}
-				}
-				if (index == -1) {
+				if (current.find_index(other, index, other_index) == false) {
 						return result.simpify();
 				}
-				result.mons.push_back(current.mons[index].div(other.mons[other_index]));
-				current = current.sub(Polynom(result.mons.back().to_str()).mult(other));
+				else {
+						result.mons.push_back(current.mons[index].div(other.mons[other_index]));
+						current = current.sub(Polynom(result.mons.back().to_str()).mult(other));
+				}
 		}
 
 		return result.simpify();
@@ -111,24 +105,17 @@ inline Polynom Polynom::mod(Polynom & other) {
 		Polynom current = *this;
 		Polynom result;
 
-		while (current.greater_than(other) && current.mons.size() >= other.mons.size()) {
+		while (current.greater_than(other)) {
 				int index = -1;
 				int other_index = 0;
 
-				for (int i = 0; i < other.mons.size(); ++i) {
-						for (int j = 0; j < current.mons.size(); ++j) {
-								if (current.mons[j].contains(other.mons[i]) == true) {
-										index = j;
-										other_index = i;
-										break;
-								}
-						}
-				}
-				if (index == -1) {
+				if (current.find_index(other, index, other_index) == false) {
 						return current.simpify();
 				}
-				result.mons.push_back(current.mons[index].div(other.mons[other_index]));
-				current = current.sub(Polynom(result.mons.back().to_str()).mult(other));
+				else {
+						result.mons.push_back(current.mons[index].div(other.mons[other_index]));
+						current = current.sub(Polynom(result.mons.back().to_str()).mult(other));
+				}
 		}
 
 		return current.simpify();
@@ -168,7 +155,7 @@ inline std::string Polynom::to_str() {
 		}
 		else {
 				for (auto &m : mons) {
-						result += m.to_str() + ' ';
+						result += m.to_str();
 				}
 		}
 
@@ -202,6 +189,20 @@ inline bool Polynom::greater_than(Polynom & other) {
 		for (int i = 0; i < mons.size() && i < other.mons.size(); ++i) {
 				if (mons[i].greater_than(other.mons[i])) {
 						return true;
+				}
+		}
+
+		return false;
+}
+
+inline bool Polynom::find_index(const Polynom &other, int &index, int &other_index) {
+		for (int i = 0; i < other.mons.size(); ++i) {
+				for (int j = 0; j < mons.size(); ++j) {
+						if (mons[j].contains(other.mons[i]) == true) {
+								index = j;
+								other_index = i;
+								return true;
+						}
 				}
 		}
 

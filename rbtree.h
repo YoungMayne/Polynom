@@ -1,5 +1,16 @@
 #pragma once
 
+#ifndef _Node
+#define _Node
+
+template<typename KEY, typename DATA>
+struct Nexus {
+		KEY key;
+		DATA data;
+};
+
+#endif
+
 #ifndef _rbtree_H
 #define _rbtree_H
 
@@ -22,10 +33,12 @@ public:
 
 		void remove(const KEY &key);
 		void clear();
+
+		void print();
 private:
 		struct leaf {
 				Nexus<KEY, DATA> data;
-				cType cType;
+				cType cType = RED;
 
 				leaf *right = nullptr;
 				leaf *left = nullptr;
@@ -37,36 +50,23 @@ private:
 		void rotate_right(leaf* &l);
 		void addfixup(leaf* &l);
 		void removefixup(leaf* &l);
+		void clear(leaf * &l);
+		void print(leaf * &l);
+
 		bool get_leaf(const KEY &key, leaf* &result);
 };
 
 //-------------PUBLIC-------------//
 
 template<typename KEY, typename DATA>
-inline rbtree<KEY, DATA>::rbtree(const Nexus<KEY, DATA>& obj){
+inline rbtree<KEY, DATA>::rbtree(const Nexus<KEY, DATA>& obj) {
 		add(obj);
 }
 
 template<typename KEY, typename DATA>
-inline rbtree<KEY, DATA>::~rbtree(){
-		if (head == nullptr) {
-				return;
-		}
-
-		while (head != nullptr) {
-				if (head->left != nullptr) {
-						while (head->left != nullptr) {
-								head = head->left;
-						}
-				}
-				else if (head->right != nullptr) {
-						while (head->right != nullptr) {
-								head = head->right;
-						}
-				}
-				leaf *temp = head;
-				head = head->parent;
-				delete temp;
+inline rbtree<KEY, DATA>::~rbtree() {
+		if (head != nullptr) {
+				clear(head);
 		}
 }
 
@@ -108,12 +108,11 @@ inline bool rbtree<KEY, DATA>::add(const Nexus<KEY, DATA>& obj) {
 				}
 		}
 		addfixup(temp);
-
 		return true;
 }
 
 template<typename KEY, typename DATA>
-inline bool rbtree<KEY, DATA>::exist(const KEY & key){
+inline bool rbtree<KEY, DATA>::exist(const KEY & key) {
 		leaf *current = head;
 
 		while (current != nullptr) {
@@ -129,7 +128,7 @@ inline bool rbtree<KEY, DATA>::exist(const KEY & key){
 }
 
 template<typename KEY, typename DATA>
-inline bool rbtree<KEY, DATA>::get(const KEY &key, Nexus<KEY, DATA> &result){
+inline bool rbtree<KEY, DATA>::get(const KEY &key, Nexus<KEY, DATA> &result) {
 		if (head == nullptr) {
 				return false;
 		}
@@ -149,17 +148,19 @@ inline bool rbtree<KEY, DATA>::get(const KEY &key, Nexus<KEY, DATA> &result){
 }
 
 template<typename KEY, typename DATA>
-inline bool rbtree<KEY, DATA>::empty(){
+inline bool rbtree<KEY, DATA>::empty() {
 		return head == nullptr;
 }
 
 template<typename KEY, typename DATA>
-inline void rbtree<KEY, DATA>::remove(const KEY & key){
+inline void rbtree<KEY, DATA>::remove(const KEY & key) {
 		leaf *elem;
+
 		if (get_leaf(key, elem) == false) {
 				return;
 		}
-		if (elem == head) {
+
+		if (elem == head && elem->left == nullptr && elem->right == nullptr) {
 				delete head;
 				head = nullptr;
 				return;
@@ -183,7 +184,9 @@ inline void rbtree<KEY, DATA>::remove(const KEY & key){
 		else {
 				temp1 = temp2->right;
 		}
-		temp1->parent = temp2->parent;
+		if (temp1 != nullptr) {
+				temp1->parent = temp2->parent;
+		}
 		if (temp2->parent) {
 				if (temp2 == temp2->parent->left) {
 						temp2->parent->left = temp1;
@@ -198,42 +201,25 @@ inline void rbtree<KEY, DATA>::remove(const KEY & key){
 		if (temp2 != elem) {
 				elem->data = temp2->data;
 		}
-		if (temp2->cType == BLACK) {
-				removefixup(temp1);
+		if (temp2->cType == RED) {
+				if (temp1 != nullptr) {
+						removefixup(temp1);
+				}
 		}
-
 		delete temp2;
 }
 
 template<typename KEY, typename DATA>
-inline void rbtree<KEY, DATA>::clear(){
-		if (head == nullptr) {
-				return;
+inline void rbtree<KEY, DATA>::clear() {
+		if (head != nullptr) {
+				clear(head);
 		}
+}
 
-		while (head != nullptr) {
-				if (head->left != nullptr) {
-						while (head->left != nullptr) {
-								head = head->left;
-						}
-						leaf *temp = head;
-						head = head->parent;
-						delete temp;
-						head->left = nullptr;
-				}
-				else if (head->right != nullptr) {
-						while (head->right != nullptr) {
-								head = head->right;
-						}
-						leaf *temp = head;
-						head = head->parent;
-						delete temp;
-						head->right = nullptr;
-				}
-				else if (head->parent == nullptr) {
-						delete head;
-						head = nullptr;
-				}
+template<typename KEY, typename DATA>
+inline void rbtree<KEY, DATA>::print() {
+		if (head != nullptr) {
+				print(head);
 		}
 }
 
@@ -278,7 +264,11 @@ inline void rbtree<KEY, DATA>::rotate_right(leaf *& l) {
 		if (temp != nullptr) {
 				temp->parent = l->parent;
 		}
-		if (l->parent) {
+		if (l == nullptr) {
+				l = new leaf;
+		}
+		if (l->parent == nullptr) {
+				l->parent = new leaf;
 				if (l == l->parent->right) {
 						l->parent->right = temp;
 				}
@@ -300,6 +290,9 @@ inline void rbtree<KEY, DATA>::addfixup(leaf* &l) {
 		while (l != head && l->parent->cType == RED) {
 				if (l->parent == l->parent->parent->left) {
 						leaf *temp = l->parent->parent->right;
+						if (temp == nullptr) {
+								temp = new leaf;
+						}
 						if (temp->cType == RED) {
 								l->parent->cType = BLACK;
 								l->parent->parent->cType = RED;
@@ -318,6 +311,9 @@ inline void rbtree<KEY, DATA>::addfixup(leaf* &l) {
 				}
 				else {
 						leaf *temp = l->parent->parent->left;
+						if (temp == nullptr) {
+								temp = new leaf;
+						}
 						if (temp->cType == RED) {
 								l->parent->cType = BLACK;
 								l->parent->parent->cType = RED;
@@ -339,7 +335,7 @@ inline void rbtree<KEY, DATA>::addfixup(leaf* &l) {
 }
 
 template<typename KEY, typename DATA>
-inline void rbtree<KEY, DATA>::removefixup(leaf *& l){
+inline void rbtree<KEY, DATA>::removefixup(leaf *& l) {
 		while (l != head && l->cType == BLACK) {
 				if (l == l->parent->left) {
 						leaf *temp = l->parent->right;
@@ -398,7 +394,30 @@ inline void rbtree<KEY, DATA>::removefixup(leaf *& l){
 }
 
 template<typename KEY, typename DATA>
-inline bool rbtree<KEY, DATA>::get_leaf(const KEY & key, leaf *& result){
+inline void rbtree<KEY, DATA>::clear(leaf* &l) {
+		if (l->left != nullptr) {
+				clear(l->left);
+		}
+		if (l->right != nullptr) {
+				clear(l->right);
+		}
+		delete l;
+		l = nullptr;
+}
+
+template<typename KEY, typename DATA>
+inline void rbtree<KEY, DATA>::print(leaf* &l) {
+		if (l->left != nullptr) {
+				print(l->left);
+		}
+		std::cout << l->data.key << "\t|\t" << l->data.data.to_str() << std::endl;
+		if (l->right != nullptr) {
+				print(l->right);
+		}
+}
+
+template<typename KEY, typename DATA>
+inline bool rbtree<KEY, DATA>::get_leaf(const KEY & key, leaf *& result) {
 		leaf *current = head;
 
 		while (current != nullptr) {

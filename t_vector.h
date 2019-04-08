@@ -31,6 +31,8 @@ public:
 		bool empty();
 
 		int size();
+
+		void print();
 private:
 		Nexus<KEY, DATA> *table = nullptr;
 		int t_size = 0;
@@ -65,8 +67,10 @@ bool t_vector<KEY, DATA>::add(const Nexus<KEY, DATA> &obj) {
 						temp[i] = table[i];
 				}
 		}
+		if (t_size > 0) {
+				delete[] table;
+		}
 		temp[t_size] = obj;
-		delete[] table;
 		table = temp;
 		t_size += 1;
 
@@ -75,26 +79,31 @@ bool t_vector<KEY, DATA>::add(const Nexus<KEY, DATA> &obj) {
 
 template<typename KEY, typename DATA>
 void t_vector<KEY, DATA>::remove(const KEY &key) {
-		Nexus<KEY, DATA> *temp = get_new_nexus(t_size - 1);
-		int n_size = 0;
-
-		for (int i = 0; i < t_size; ++i) {
-				if (table[i].key != key) {
-						temp[n_size] = table[i];
-						n_size += 1;
-				}
+		if (exist(key) == false) {
+				return;
 		}
-		delete[] table;
-		table = temp;
-		t_size -= 1;
+		else {
+				Nexus<KEY, DATA> *temp = get_new_nexus(t_size - 1);
+				int n_size = 0;
+				for (int i = 0; i < t_size; ++i) {
+						if (table[i].key != key) {
+								temp[n_size] = table[i];
+								n_size += 1;
+						}
+				}
+
+				delete[] table;
+				table = temp;
+				t_size -= 1;
+		}
 }
 
 template<typename KEY, typename DATA>
 void t_vector<KEY, DATA>::clear() {
 		if (t_size > 0) {
 				delete[] table;
+				t_size = 0;
 		}
-		t_size = 0;
 }
 
 template<typename KEY, typename DATA>
@@ -128,6 +137,13 @@ bool t_vector<KEY, DATA>::empty() {
 template<typename KEY, typename DATA>
 int t_vector<KEY, DATA>::size() {
 		return t_size;
+}
+
+template<typename KEY, typename DATA>
+inline void t_vector<KEY, DATA>::print() {
+		for (int i = 0; i < t_size; ++i) {
+				std::cout << table[i].key << "\t|\t" << table[i].data.to_str() << std::endl;
+		}
 }
 
 //-------------PRIVATE-------------//
