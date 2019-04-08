@@ -87,7 +87,7 @@ std::string get_postfix(std::string s) {
 }
 
 void add(const Nexus<std::string, Polynom> &pol) {
-		if (table_list.add(pol) == false || tree.add(pol) == false || vector.add(pol) == false || vector_sorted.add(pol) == false || hash.add({pol.key, pol.data}) == false || hash2.add({ pol.key, pol.data }) == false) {
+		if (table_list.add(pol) == false || tree.add(pol) == false || vector.add(pol) == false || vector_sorted.add(pol) == false || hash.add({ pol.key, pol.data }) == false || hash2.add({ pol.key, pol.data }) == false) {
 				std::cout << "\tTables already have this name" << std::endl;
 		}
 		else {
@@ -138,7 +138,8 @@ void calculate(const std::string &postfix) {
 
 		std::cout << '\t' << stack.top().to_str() << std::endl;
 
-		std::cout << "Save?(name / no)" << std::endl;
+		std::cout <<"Save?(name / no)";
+		std::cout << '>';
 		std::string temp;
 		std::getline(std::cin, temp);
 		if (temp == "no") {
@@ -241,6 +242,13 @@ void parsing() {
 								std::cout << "-clear all\t\t        -fully clear all tables" << std::endl;
 								std::cout << std::endl;
 								std::cout << "-calculate 'expression'\t        -calculate expression" << std::endl;
+								std::cout << std::endl;
+								std::cout << "'name' - 'name' 'new name'\t-sub polynoms and add new to all tables" << std::endl;
+								std::cout << "'name' * 'name' 'new name'\t-mult polynoms and add new to all tables" << std::endl;
+								std::cout << "'name' / 'name' 'new name'\t-div polynoms and add new to all tables" << std::endl;
+								std::cout << "'name' % 'name' 'new name'\t-mod polynoms and add new to all tables" << std::endl;
+								std::cout << "'name' dx/dy/dz 'new name'\t-derivide polynom and add new to all tables" << std::endl;
+								std::cout << "'name' Ix/Iy/Iz 'new name'\t-integrate polynom and add new to all tables" << std::endl;
 								std::cout << std::endl;
 								std::cout << "-cls\t\t                -clear console" << std::endl;
 								std::cout << "-exit\t\t                -close programm" << std::endl;
