@@ -33,11 +33,13 @@ public:
 private:
 		struct p_nexus {
 				Nexus<KEY, DATA> data;
-				p_nexus *next;
+				p_nexus *next = nullptr;
 		};
 		p_nexus *first = nullptr;
 
 		void push_to(p_nexus* &pointer, const Nexus<KEY, DATA> &obj);
+		void print(p_nexus* &n);
+		void clear(p_nexus* &n);
 };
 
 //-------------PUBLIC-------------//
@@ -52,11 +54,7 @@ inline t_list<KEY, DATA>::t_list(const Nexus<KEY, DATA> &obj) {
 
 template<typename KEY, typename DATA>
 inline t_list<KEY, DATA>::~t_list() {
-		while (first != nullptr) {
-				p_nexus *temp = first;
-				first = first->next;
-				delete temp;
-		}
+		clear(first);
 }
 
 template<typename KEY, typename DATA>
@@ -109,12 +107,7 @@ inline void t_list<KEY, DATA>::remove(const KEY & key) {
 
 template<typename KEY, typename DATA>
 inline void t_list<KEY, DATA>::clear() {
-		while (first != nullptr) {
-				p_nexus *temp = first;
-				first = first->next;
-				delete temp;
-		}
-		first = nullptr;
+		clear(first);
 }
 
 template<typename KEY, typename DATA>
@@ -156,13 +149,8 @@ inline bool t_list<KEY, DATA>::empty() {
 }
 
 template<typename KEY, typename DATA>
-inline void t_list<KEY, DATA>::print(){
-		auto temp = first;
-
-		while (temp != nullptr) {
-				std::cout << temp->data.key << "\t|\t" << temp->data.data.to_str() << std::endl;
-				temp = temp->next;
-		}
+inline void t_list<KEY, DATA>::print() {
+		print(first);
 }
 
 //-------------PRIVATE-------------//
@@ -178,6 +166,33 @@ inline void t_list<KEY, DATA>::push_to(p_nexus* &pointer, const Nexus<KEY, DATA>
 
 		pointer->data = obj;
 		pointer->next = nullptr;
+}
+
+template<typename KEY, typename DATA>
+inline void t_list<KEY, DATA>::print(p_nexus *& n) {
+		if (n == nullptr) {
+				return;
+		}
+		else {
+				if (n->next != nullptr) {
+						print(n->next);
+				}
+				std::cout << n->data.key << "\t|\t" << n->data.data.to_str() << std::endl;
+		}
+}
+
+template<typename KEY, typename DATA>
+inline void t_list<KEY, DATA>::clear(p_nexus* &n) {
+		if (n == nullptr) {
+				return;
+		}
+		else {
+				if (n->next != nullptr) {
+						clear(n->next);
+				}
+				delete n;
+				n = nullptr;
+		}
 }
 
 #endif 

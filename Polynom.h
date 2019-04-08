@@ -155,7 +155,7 @@ inline std::string Polynom::to_str() {
 		}
 		else {
 				for (auto &m : mons) {
-						result += m.to_str() + ' ';
+						result += m.to_str();
 				}
 		}
 

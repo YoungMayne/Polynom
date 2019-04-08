@@ -81,7 +81,7 @@ template<typename KEY, typename DATA>
 void t_vector<KEY, DATA>::remove(const KEY &key) {
 		if (exist(key) == false) {
 				return;
-		}	
+		}
 		else {
 				Nexus<KEY, DATA> *temp = get_new_nexus(t_size - 1);
 				int n_size = 0;
@@ -91,7 +91,7 @@ void t_vector<KEY, DATA>::remove(const KEY &key) {
 								n_size += 1;
 						}
 				}
-				
+
 				delete[] table;
 				table = temp;
 				t_size -= 1;

@@ -383,13 +383,16 @@ inline void rbtree<KEY, DATA>::removefixup(leaf *& l) {
 
 template<typename KEY, typename DATA>
 inline void rbtree<KEY, DATA>::clear(leaf* &l) {
-		if (l->left != nullptr) {
-				clear(l->left);
+		if (l == nullptr) {
+				return;
 		}
-		if (l->right != nullptr) {
-				clear(l->right);
-		}
-		if (l != nullptr) {
+		else {
+				if (l->left != nullptr) {
+						clear(l->left);
+				}
+				if (l->right != nullptr) {
+						clear(l->right);
+				}
 				delete l;
 				l = nullptr;
 		}
