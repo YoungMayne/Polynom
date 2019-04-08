@@ -54,7 +54,9 @@ inline t_list<KEY, DATA>::t_list(const Nexus<KEY, DATA> &obj) {
 
 template<typename KEY, typename DATA>
 inline t_list<KEY, DATA>::~t_list() {
-		clear(first);
+		if (first != nullptr) {
+				clear(first);
+		}
 }
 
 template<typename KEY, typename DATA>
@@ -107,7 +109,9 @@ inline void t_list<KEY, DATA>::remove(const KEY & key) {
 
 template<typename KEY, typename DATA>
 inline void t_list<KEY, DATA>::clear() {
-		clear(first);
+		if (first != nullptr) {
+				clear(first);
+		}
 }
 
 template<typename KEY, typename DATA>
@@ -150,7 +154,9 @@ inline bool t_list<KEY, DATA>::empty() {
 
 template<typename KEY, typename DATA>
 inline void t_list<KEY, DATA>::print() {
-		print(first);
+		if (first != nullptr) {
+				print(first);
+		}
 }
 
 //-------------PRIVATE-------------//
@@ -170,29 +176,19 @@ inline void t_list<KEY, DATA>::push_to(p_nexus* &pointer, const Nexus<KEY, DATA>
 
 template<typename KEY, typename DATA>
 inline void t_list<KEY, DATA>::print(p_nexus *& n) {
-		if (n == nullptr) {
-				return;
+		if (n->next != nullptr) {
+				print(n->next);
 		}
-		else {
-				if (n->next != nullptr) {
-						print(n->next);
-				}
-				std::cout << n->data.key << "\t|\t" << n->data.data.to_str() << std::endl;
-		}
+		std::cout << n->data.key << "\t|\t" << n->data.data.to_str() << std::endl;
 }
 
 template<typename KEY, typename DATA>
 inline void t_list<KEY, DATA>::clear(p_nexus* &n) {
-		if (n == nullptr) {
-				return;
+		if (n->next != nullptr) {
+				clear(n->next);
 		}
-		else {
-				if (n->next != nullptr) {
-						clear(n->next);
-				}
-				delete n;
-				n = nullptr;
-		}
+		delete n;
+		n = nullptr;
 }
 
 #endif 

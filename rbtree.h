@@ -65,7 +65,9 @@ inline rbtree<KEY, DATA>::rbtree(const Nexus<KEY, DATA>& obj) {
 
 template<typename KEY, typename DATA>
 inline rbtree<KEY, DATA>::~rbtree() {
-		clear(head);
+		if (head != nullptr) {
+				clear(head);
+		}
 }
 
 template<typename KEY, typename DATA>
@@ -203,12 +205,16 @@ inline void rbtree<KEY, DATA>::remove(const KEY & key) {
 
 template<typename KEY, typename DATA>
 inline void rbtree<KEY, DATA>::clear() {
-		clear(head);
+		if (head != nullptr) {
+				clear(head);
+		}
 }
 
 template<typename KEY, typename DATA>
 inline void rbtree<KEY, DATA>::print() {
-		print(head);
+		if (head != nullptr) {
+				print(head);
+		}
 }
 
 //-------------PRIVATE-------------//
@@ -383,19 +389,14 @@ inline void rbtree<KEY, DATA>::removefixup(leaf *& l) {
 
 template<typename KEY, typename DATA>
 inline void rbtree<KEY, DATA>::clear(leaf* &l) {
-		if (l == nullptr) {
-				return;
+		if (l->left != nullptr) {
+				clear(l->left);
 		}
-		else {
-				if (l->left != nullptr) {
-						clear(l->left);
-				}
-				if (l->right != nullptr) {
-						clear(l->right);
-				}
-				delete l;
-				l = nullptr;
+		if (l->right != nullptr) {
+				clear(l->right);
 		}
+		delete l;
+		l = nullptr;
 }
 
 template<typename KEY, typename DATA>
@@ -403,9 +404,7 @@ inline void rbtree<KEY, DATA>::print(leaf* &l) {
 		if (l->left != nullptr) {
 				print(l->left);
 		}
-		if (l != nullptr) {
-				std::cout << l->data.key << "\t|\t" << l->data.data.to_str() << std::endl;
-		}
+		std::cout << l->data.key << "\t|\t" << l->data.data.to_str() << std::endl;
 		if (l->right != nullptr) {
 				print(l->right);
 		}

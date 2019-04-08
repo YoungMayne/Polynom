@@ -2,8 +2,8 @@
 e:\polynom\monom.h(282): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
 e:\polynom\polynom.h(214): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
 e:\polynom\main.cpp(157): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
-e:\polynom\rbtree.h(88): warning C4101: 'e': unreferenced local variable
-  e:\polynom\rbtree.h(72): note: while compiling class template member function 'bool rbtree<std::string,Polynom>::add(const Nexus<KEY,DATA> &)'
+e:\polynom\rbtree.h(90): warning C4101: 'e': unreferenced local variable
+  e:\polynom\rbtree.h(74): note: while compiling class template member function 'bool rbtree<std::string,Polynom>::add(const Nexus<KEY,DATA> &)'
           with
           [
               KEY=std::string,
@@ -16,14 +16,14 @@ e:\polynom\rbtree.h(88): warning C4101: 'e': unreferenced local variable
               DATA=Polynom
           ]
   e:\polynom\main.cpp(17): note: see reference to class template instantiation 'rbtree<std::string,Polynom>' being compiled
-e:\polynom\t_list.h(163): warning C4101: 'e': unreferenced local variable
-  e:\polynom\t_list.h(159): note: while compiling class template member function 'void t_list<std::string,Polynom>::push_to(t_list<std::string,Polynom>::p_nexus *&,const Nexus<KEY,DATA> &)'
+e:\polynom\t_list.h(169): warning C4101: 'e': unreferenced local variable
+  e:\polynom\t_list.h(165): note: while compiling class template member function 'void t_list<std::string,Polynom>::push_to(t_list<std::string,Polynom>::p_nexus *&,const Nexus<KEY,DATA> &)'
           with
           [
               KEY=std::string,
               DATA=Polynom
           ]
-  e:\polynom\t_list.h(63): note: see reference to function template instantiation 'void t_list<std::string,Polynom>::push_to(t_list<std::string,Polynom>::p_nexus *&,const Nexus<KEY,DATA> &)' being compiled
+  e:\polynom\t_list.h(65): note: see reference to function template instantiation 'void t_list<std::string,Polynom>::push_to(t_list<std::string,Polynom>::p_nexus *&,const Nexus<KEY,DATA> &)' being compiled
           with
           [
               KEY=std::string,

@@ -138,7 +138,7 @@ void calculate(const std::string &postfix) {
 
 		std::cout << '\t' << stack.top().to_str() << std::endl;
 
-		std::cout <<"Save?(name / no)";
+		std::cout << "Save?(name / no)";
 		std::cout << '>';
 		std::string temp;
 		std::getline(std::cin, temp);
