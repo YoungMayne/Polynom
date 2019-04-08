@@ -160,6 +160,12 @@ inline void rbtree<KEY, DATA>::remove(const KEY & key) {
 				return;
 		}
 
+		if (elem == head && elem->left == nullptr && elem->right == nullptr) {
+				delete head;
+				head = nullptr;
+				return;
+		}
+
 		leaf *temp1;
 		leaf *temp2;
 
@@ -177,11 +183,10 @@ inline void rbtree<KEY, DATA>::remove(const KEY & key) {
 		}
 		else {
 				temp1 = temp2->right;
-				if (temp1 == nullptr) {
-						temp1 = new leaf;
-				}
 		}
-		temp1->parent = temp2->parent;
+		if (temp1 != nullptr) {
+				temp1->parent = temp2->parent;
+		}
 		if (temp2->parent) {
 				if (temp2 == temp2->parent->left) {
 						temp2->parent->left = temp1;
@@ -196,10 +201,11 @@ inline void rbtree<KEY, DATA>::remove(const KEY & key) {
 		if (temp2 != elem) {
 				elem->data = temp2->data;
 		}
-		if (temp2->cType == BLACK) {
-				removefixup(temp1);
+		if (temp2->cType == RED) {
+				if (temp1 != nullptr) {
+						removefixup(temp1);
+				}
 		}
-
 		delete temp2;
 }
 
